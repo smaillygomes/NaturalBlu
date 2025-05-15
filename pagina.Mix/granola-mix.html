@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Seu Mix de Granola</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f7;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #4a8f29;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #e8f5e9;
+        }
+        
+        .mix-builder {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h2 {
+            color: #4a8f29;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .ingredient-option {
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+        }
+        
+        .ingredient-option:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+        
+        .ingredient-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .ingredient-option input {
+            margin-right: 10px;
+        }
+        
+        .ingredient-name {
+            font-weight: 600;
+        }
+        
+        .ingredient-price {
+            color: #4a8f29;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        #nomeMix {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
+        button {
+            background-color: #4a8f29;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            background-color: #3a7320;
+        }
+        
+        #resumo {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        #resumo h2 {
+            margin-top: 0;
+        }
+        
+        .price-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4a8f29;
+            margin-top: 10px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Monte Seu Mix de Granola Personalizado 🍯</h1>
+            <p class="subtitle">Crie a combinação perfeita para seu café da manhã saudável</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="mix-builder">
+            <div class="section">
+                <h2>1. Escolha sua base (Selecione até 2)</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Aveia" data-price="5.90">
+                            <div>
+                                <div class="ingredient-name">Aveia em Flocos</div>
+                                <div class="ingredient-price">+ R$ 5,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Flocos de Milho" data-price="4.90">
+                            <div>
+                                <div class="ingredient-name">Flocos de Milho</div>
+                                <div class="ingredient-price">+ R$ 4,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Quinoa em Flocos" data-price="7.90">
+                            <div>
+                                <div class="ingredient-name">Quinoa em Flocos</div>
+                                <div class="ingredient-price">+ R$ 7,90</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>2. Castanhas (Selecione até 3)</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Castanha do Pará" data-price="8.90">
+                            <div>
+                                <div class="ingredient-name">Castanha do Pará</div>
+                                <div class="ingredient-price">+ R$ 8,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Amêndoas" data-price="9.90">
+                            <div>
+                                <div class="ingredient-name">Amêndoas</div>
+                                <div class="ingredient-price">+ R$ 9,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Nozes" data-price="10.90">
+                            <div>
+                                <div class="ingredient-name">Nozes</div>
+                                <div class="ingredient-price">+ R$ 10,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Castanha de Caju" data-price="8.50">
+                            <div>
+                                <div class="ingredient-name">Castanha de Caju</div>
+                                <div class="ingredient-price">+ R$ 8,50</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>3. Frutas Secas (Selecione até 2)</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Uva Passa" data-price="5.50">
+                            <div>
+                                <div class="ingredient-name">Uva Passa</div>
+                                <div class="ingredient-price">+ R$ 5,50</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Damasco" data-price="6.90">
+                            <div>
+                                <div class="ingredient-name">Damasco Seco</div>
+                                <div class="ingredient-price">+ R$ 6,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Cranberry" data-price="7.50">
+                            <div>
+                                <div class="ingredient-name">Cranberry</div>
+                                <div class="ingredient-price">+ R$ 7,50</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Tâmaras" data-price="8.20">
+                            <div>
+                                <div class="ingredient-name">Tâmaras</div>
+                                <div class="ingredient-price">+ R$ 8,20</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>4. Extras Especiais</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Coco Ralado" data-price="4.50">
+                            <div>
+                                <div class="ingredient-name">Coco Ralado</div>
+                                <div class="ingredient-price">+ R$ 4,50</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Gotas de Chocolate" data-price="6.90">
+                            <div>
+                                <div class="ingredient-name">Gotas de Chocolate</div>
+                                <div class="ingredient-price">+ R$ 6,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Sementes de Chia" data-price="5.90">
+                            <div>
+                                <div class="ingredient-name">Sementes de Chia</div>
+                                <div class="ingredient-price">+ R$ 5,90</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ingredient-option">
+                        <label>
+                            <input type="checkbox" class="ingrediente" value="Linhaça Dourada" data-price="4.90">
+                            <div>
+                                <div class="ingredient-name">Linhaça Dourada</div>
+                                <div class="ingredient-price">+ R$ 4,90</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>5. Dê um nome ao seu mix</h2>
+                <input type="text" id="nomeMix" placeholder="Ex: Mix Energético da Manhã">
+                <p><small>Escolha um nome criativo para sua combinação única!</small></p>
+            </div>
+            
+            <button onclick="mostrarResumo()">Visualizar Meu Mix</button>
+            
+            <div id="resumo">
+                <h2>Resumo do Seu Mix Personalizado</h2>
+                <p><strong>Nome do Mix:</strong> <span id="nomeSelecionado"></span></p>
+                <p><strong>Ingredientes Selecionados:</strong></p>
+                <ul id="ingredientesSelecionados"></ul>
+                <p class="price-total">Preço Total: <span id="precoTotal">R$ 29,90</span></p>
+                
+                <div class="action-buttons">
+                    <button onclick="adicionarAoCarrinho()"><i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho</button>
+                    <button class="btn-secondary" onclick="compartilharMix()"><i class="fas fa-share-alt"></i> Compartilhar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const BASE_PRICE = 29.90;
+        
+        function mostrarResumo() {
+            const checkboxes = document.querySelectorAll('.ingrediente:checked');
+            const ingredientes = Array.from(checkboxes).map(cb => {
+                return {
+                    name: cb.value,
+                    price: parseFloat(cb.dataset.price)
+                };
+            });
+            
+            const nome = document.getElementById('nomeMix').value || "Meu Mix Personalizado";
+            
+            // Calcular preço total
+            let total = BASE_PRICE;
+            ingredientes.forEach(ing => total += ing.price);
+            
+            // Atualizar o resumo
+            document.getElementById('nomeSelecionado').textContent = nome;
+            
+            const ingredientesList = document.getElementById('ingredientesSelecionados');
+            ingredientesList.innerHTML = '';
+            ingredientes.forEach(ing => {
+                const li = document.createElement('li');
+                li.textContent = `${ing.name} (+ R$ ${ing.price.toFixed(2).replace('.', ',')})`;
+                ingredientesList.appendChild(li);
+            });
+            
+            document.getElementById('precoTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            document.getElementById('resumo').style.display = 'block';
+            
+            // Rolagem suave para o resumo
+            document.getElementById('resumo').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function adicionarAoCarrinho() {
+            alert('Seu mix personalizado foi adicionado ao carrinho!');
+            // Aqui você adicionaria a lógica para enviar para o carrinho
+        }
+        
+        function compartilharMix() {
+            alert('Link de compartilhamento copiado para a área de transferência!');
+            // Aqui você adicionaria a lógica para compartilhar
+        }
+        
+        // Limitar seleção de ingredientes por categoria
+        document.querySelectorAll('.ingrediente').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const category = this.closest('.section').querySelector('h2').textContent;
+                const maxSelections = getMaxSelections(category);
+                const checkedInCategory = this.closest('.section').querySelectorAll('.ingrediente:checked').length;
+                
+                if (checkedInCategory > maxSelections) {
+                    this.checked = false;
+                    alert(`Você pode selecionar no máximo ${maxSelections} itens nesta categoria.`);
+                }
+            });
+        });
+        
+        function getMaxSelections(category) {
+            if (category.includes('base')) return 2;
+            if (category.includes('Castanhas')) return 3;
+            if (category.includes('Frutas')) return 2;
+            return 10; // Sem limite para outras categorias
+        }
+    </script>
+</body>
+</html>

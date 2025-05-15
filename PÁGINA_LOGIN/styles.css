@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-image: url("imagens/8764038.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.box {
+    display: flex;
+    width: 930px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.img-box {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #01a301;
+    padding: 20px;
+}
+
+.img-box img {
+    width: 200px; /* Ajuste do tamanho da logo */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px 50px;
+    width: 50%;
+    border-radius: 0 20px 20px 0;
+}
+
+.form-box h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-box p {
+    font-weight: bold;
+    color: #3d3d3d;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-box p a {
+    color: #01a301;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-box form {
+    margin: 20px 0;
+}
+
+form .input-group {
+    margin-bottom: 20px;
+}
+
+form .input-group label {
+    color: #3d3d3d;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+form .input-group input {
+    width: 100%;
+    height: 47px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 15px;
+    color: #616161;
+    transition: border-color 0.3s ease;
+}
+
+form .input-group input:focus {
+    border-color: #01a301;
+}
+
+form .input-group button {
+    width: 100%;
+    height: 47px;
+    background-color: #01a301;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form .input-group button:hover {
+    background-color: #028a02;
+}
+
+@media (max-width: 930px) {
+    .img-box {
+        display: none;
+    }
+    .box {
+        width: 100%;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .form-box {
+        padding: 20px;
+    }
+    .form-box h2 {
+        font-size: 25px;
+    }
+}
