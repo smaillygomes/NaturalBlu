@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras | NaturalBlu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="https://png.pngtree.com/png-clipart/20230430/original/pngtree-circle-logo-100-natural-png-image_9127750.png">
+</head>
+<body>
+    <header>
+        <!-- Copie o header da sua página principal aqui, se desejar -->
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="https://png.pngtree.com/png-clipart/20230430/original/pngtree-circle-logo-100-natural-png-image_9127750.png" alt="Natureza Viva">
+                        <h1>Natural<span>Blu</span></h1>
+                    </div>
+                    <div class="user-actions">
+                        <a href="../NATURALBLU/index.html"><i class="fas fa-home"></i></a>
+                        <a href="#account"><i class="fas fa-user-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <h1 class="cart-title">Meu Carrinho</h1>
+            <table class="cart-list" id="cart-list">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Remover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Itens do carrinho serão inseridos aqui -->
+                </tbody>
+            </table>
+            <div class="cart-total" id="cart-total">Total: R$ 0,00</div>
+            <div class="cart-actions">
+                <button class="btn" onclick="finalizarCompra()">Finalizar Compra</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    // Exemplo de produtos (use os mesmos IDs e imagens da sua página principal)
+    const produtos = [
+        {
+            id: "1",
+            nome: "Mel Orgânico 100% Puro",
+            preco: 29.90,
+            imagem: "https://th.bing.com/th/id/OIP.9Pp8b-XiJIXOKflte21wggHaHa?rs=1&pid=ImgDetMain"
+        },
+        {
+            id: "2",
+            nome: "Granola Caseira Integral",
+            preco: 18.90,
+            imagem: "https://th.bing.com/th/id/OIP.wGmMl0OGYcWHR-lytZs24AHaJ4?rs=1&pid=ImgDetMain"
+        },
+        {
+            id: "3",
+            nome: "Óleo de Coco Extra Virgem",
+            preco: 42.50,
+            imagem: "https://cruda.com.br/uploads/7/9/9/3/79930458/0608-oils-2148x1416-1_orig.jpg"
+        },
+        {
+            id: "4",
+            nome: "Chá Verde Orgânico",
+            preco: 19.90,
+            imagem: "https://th.bing.com/th/id/OIP.C-kmbAQSBidTcaTNyuJb1AHaE7?rs=1&pid=ImgDetMain"
+        }
+        // Adicione mais produtos conforme necessário
+    ];
+
+    // Carrega IDs do carrinho do localStorage
+    function getCarrinho() {
+        return JSON.parse(localStorage.getItem('carrinho')) || [];
+    }
+
+    function setCarrinho(carrinho) {
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    }
+
+    function removerDoCarrinho(id) {
+        let carrinho = getCarrinho();
+        carrinho = carrinho.filter(pid => pid !== id);
+        setCarrinho(carrinho);
+        renderCarrinho();
+    }
+
+    function renderCarrinho() {
+        const carrinho = getCarrinho();
+        const tbody = document.querySelector('#cart-list tbody');
+        let total = 0;
+        tbody.innerHTML = '';
+
+        if (carrinho.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Seu carrinho está vazio.</td></tr>';
+        } else {
+            carrinho.forEach(pid => {
+                const produto = produtos.find(p => p.id === pid);
+                if (produto) {
+                    total += produto.preco;
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><img src="${produto.imagem}" alt="${produto.nome}"></td>
+                            <td>${produto.nome}</td>
+                            <td>R$ ${produto.preco.toFixed(2)}</td>
+                            <td><button class="cart-remove" onclick="removerDoCarrinho('${produto.id}')"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    `;
+                }
+            });
+        }
+        document.getElementById('cart-total').textContent = `Total: R$ ${total.toFixed(2)}`;
+    }
+
+    function finalizarCompra() {
+        alert('Compra finalizada! Obrigado por comprar na NaturalBlu.');
+        setCarrinho([]);
+        renderCarrinho();
+    }
+
+    // Renderiza o carrinho ao carregar a página
+    renderCarrinho();
+    </script>
+</body>
+</html>

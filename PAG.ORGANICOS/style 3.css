@@ -1,0 +1,386 @@
+/* Define CSS Variables for better maintainability and theme control */
+:root {
+    --primary-color: #4CAF50; /* A vibrant green for organic themes */
+    --secondary-color: #9caf86; /* A muted green/gray for secondary elements */
+    --accent-color: #FFC107; /* A bright orange for highlights/accents */
+    --dark-color: #7f9481; /* A dark muted green */
+    --light-color: #F1F8E9; /* A very light green/cream background */
+    --text-color: #333; /* Standard dark text */
+    --white: #fff;
+    --gray: #f5f5f5; /* Light gray for backgrounds/borders */
+    --light-gray-border: #eee; /* For subtle borders */
+}
+
+/* General Body and Container Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Changed to a more modern, clean font, or you can use Google Fonts */
+    margin: 0;
+    padding: 0; /* Remove body padding, let containers manage spacing */
+    background-color: var(--light-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Main Header (assuming this is the site-wide header) */
+header {
+    text-align: center;
+    padding: 40px 20px 20px; /* Increased top padding for more space */
+    border-bottom: 2px solid var(--light-gray-border);
+    background-color: var(--white); /* Ensure header has a background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+header h1 {
+    font-size: 3em; /* Slightly larger title */
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 700; /* Make the title bolder */
+    letter-spacing: 1px; /* Add slight letter spacing */
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    /* Changed to 4 products per line on larger screens */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 60px auto; /* Added top margin for separation from header */
+    padding: 0 20px; /* Add some horizontal padding for smaller screens */
+}
+
+/* Individual Product Card */
+.product-card {
+    background-color: var(--white);
+    border-radius: 10px; /* Slightly more rounded corners for a modern feel */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Stronger, softer shadow for more depth */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smoother transitions */
+}
+
+.product-card:hover {
+    transform: translateY(-8px); /* More pronounced lift on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Product Image Container */
+.product-image-container { /* Added a container for better image control */
+    width: 100%;
+    height: 220px; /* Slightly increased image height */
+    overflow: hidden;
+    border-bottom: 1px solid var(--light-gray-border);
+    position: relative; /* For image effects */
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease; /* Added filter transition */
+}
+
+.product-card:hover img {
+    transform: scale(1.1); /* Zoom effect on hover */
+    filter: brightness(0.9); /* Slightly darken image on hover */
+}
+
+
+/* Product Content Area (adjust padding here) */
+.product-info-content { /* Renamed for clarity, contains everything but image and actions */
+    padding: 15px 20px; /* Slightly more horizontal padding */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows it to take available space */
+}
+
+.product-category {
+    font-size: 0.85em; /* Slightly smaller category font */
+    color: var(--secondary-color); /* Use secondary color for category */
+    margin-bottom: 8px; /* More space below category */
+    font-weight: 600; /* Make category slightly bolder */
+    text-transform: uppercase; /* Uppercase categories */
+}
+
+.product-title {
+    font-size: 1.4em; /* Slightly larger and more prominent title */
+    color: var(--text-color);
+    margin: 0 0 10px 0;
+    height: 2.8em; /* Adjusted height for typically 2 lines, adjust as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 700; /* Stronger bold for titles */
+}
+
+.product-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    height: 3.6em; /* Ensure consistent height for descriptions (approx 3 lines) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5; /* Better readability */
+}
+
+.product-price-wrapper { /* Wrapper to manage price layout, as before */
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start; /* Align prices to the left */
+    margin-top: auto; /* Pushes price to the bottom of the .product-info-content */
+}
+
+.product-price {
+    font-size: 1.6em; /* Even larger, bolder price */
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.product-price.old-price { /* Adjusted for clarity */
+    font-size: 1.1em; /* Slightly larger old price */
+    color: #999;
+    text-decoration: line-through;
+    display: inline-block;
+}
+
+/* Product Tags (Novidade, Mais Vendido, Promoção) */
+.product-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 6px 12px; /* Slightly more padding */
+    border-radius: 20px; /* More rounded "pill" shape */
+    font-size: 0.85em; /* Slightly larger font size */
+    font-weight: bold;
+    z-index: 10;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add shadow to tags */
+}
+
+.product-tag.new-product {
+    background-color: #2196F3; /* Blue for new */
+}
+
+.product-tag.best-seller {
+    background-color: var(--accent-color); /* Orange for best seller */
+    color: var(--text-color); /* Darker text for contrast on yellow */
+}
+
+.product-tag.promotion {
+    background-color: #F44336; /* Red for promotion */
+}
+
+/* Product Actions (Heart and Cart buttons) */
+.product-actions {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    padding: 10px 20px 20px; /* Increased bottom padding */
+    border-top: 1px solid var(--light-gray-border); /* Consistent border color */
+    background-color: var(--white); /* Ensure background behind buttons */
+}
+
+.product-actions .add-to-cart-btn {
+    background: none;
+    border: none;
+    font-size: 1.6em; /* Larger icons */
+    cursor: pointer;
+    color: #777; /* Default neutral grey color for icons */
+    transition: color 0.3s ease-in-out, transform 0.2s; /* Added transform transition */
+    margin-left: 15px; /* More space between buttons */
+}
+
+.product-actions .add-to-cart-btn:hover {
+    color: var(--primary-color); /* Green on hover */
+    transform: scale(1.1); /* Slight pop effect on hover */
+}
+
+/* If you are using Font Awesome, ensure to link it in your HTML: */
+/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> */
+
+
+/* Footer Styles (using more of your previous full CSS structure ideas) */
+footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    padding: 40px 0 20px; /* Adjust padding */
+    text-align: center;
+}
+
+/* You could add more sophisticated footer content here as in your previous full CSS */
+/* For this snippet, keeping it simple as it's not the primary focus */
+footer p {
+    font-size: 0.9em;
+    opacity: 0.8; /* Slightly less prominent text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) { /* Adjust for larger tablets and smaller desktops */
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Go back to 3 columns or less */
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 2 columns on tablets */
+        gap: 20px;
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        padding: 0 15px; /* Keep some padding */
+    }
+
+    body {
+        /* No specific padding here, container or grid handles it */
+    }
+
+    header h1 {
+        font-size: 1.6em;
+    }
+
+    .product-info-content {
+        padding: 10px 15px; /* Reduce padding on small screens */
+    }
+
+    .product-actions {
+        padding: 8px 15px 15px;
+    }
+}
+/* Navigation Bar */
+nav {
+    background-color: var(--primary-color); /* Uses the primary green color for the background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center; /* Center the navigation items */
+    list-style: none; /* Remove default list bullets */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.nav-menu li {
+    position: relative; /* Needed for submenu positioning */
+}
+
+.nav-menu a {
+    color: var(--white); /* White text color for links */
+    text-decoration: none; /* Remove underline from links */
+    padding: 15px 20px; /* Generous padding for clickable area */
+    display: block; /* Make the entire padding area clickable */
+    font-weight: 600; /* Slightly bolder text for navigation */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.nav-menu a:hover {
+    background-color: var(--dark-color); /* Darker green on hover */
+    color: var(--white); /* Keep text white on hover */
+}
+
+/* Dropdown (Submenu) Styling */
+.submenu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the parent item */
+    left: 0;
+    background-color: var(--white); /* White background for dropdown */
+    min-width: 180px; /* Minimum width for dropdown items */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for dropdown */
+    border-radius: 5px; /* Slightly rounded corners for the dropdown box */
+    list-style: none;
+    padding: 10px 0; /* Padding inside the dropdown */
+    z-index: 50; /* Ensure it's above other content */
+    opacity: 0; /* Start hidden for fade-in effect */
+    visibility: hidden; /* Hide from screen readers when not visible */
+    transform: translateY(10px); /* Start slightly below for slide-in effect */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.nav-menu li:hover > .submenu { /* Show submenu on parent hover (using '>' for direct child) */
+    display: block;
+    opacity: 1; /* Fade in */
+    visibility: visible;
+    transform: translateY(0); /* Slide up to position */
+}
+
+.submenu li {
+    width: 100%; /* Ensure list items take full width of submenu */
+}
+
+.submenu a {
+    color: var(--text-color); /* Dark text for submenu items */
+    padding: 10px 20px; /* Padding for submenu links */
+    font-weight: normal; /* Normal font weight */
+}
+
+.submenu a:hover {
+    background-color: var(--gray); /* Light gray background on hover */
+    color: var(--primary-color); /* Primary green text on hover */
+}
+
+/* Icon in Categories link */
+.nav-menu a i.fas.fa-chevron-down {
+    margin-left: 8px; /* Space between text and icon */
+    font-size: 0.8em; /* Smaller icon size */
+    transition: transform 0.3s ease; /* Smooth rotation transition */
+}
+
+.nav-menu li:hover > a i.fas.fa-chevron-down {
+    transform: rotate(180deg); /* Rotate arrow when submenu is open */
+}
+
+/* Responsive adjustments for Navigation */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column; /* Stack navigation items vertically */
+        align-items: center; /* Center items when stacked */
+        padding: 10px 0;
+    }
+
+    .nav-menu li {
+        width: 100%; /* Full width for mobile navigation items */
+        text-align: center;
+    }
+
+    .nav-menu a {
+        padding: 12px 20px; /* Adjust padding for mobile */
+    }
+
+    .submenu {
+        position: static; /* Submenu stacks below parent on mobile */
+        width: 100%; /* Full width for mobile submenu */
+        box-shadow: none; /* Remove shadow for mobile submenu */
+        border-radius: 0; /* No rounded corners */
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for mobile submenu */
+        padding: 0; /* Remove padding, let links handle it */
+        transform: translateY(0); /* No transform needed for static position */
+    }
+
+    .nav-menu li:hover > .submenu {
+        display: flex; /* Display as flex column for nested links */
+        flex-direction: column;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .submenu a {
+        padding: 10px 30px; /* Indent submenu items */
+        font-size: 0.9em;
+    }
+
+    .nav-menu a i.fas.fa-chevron-down {
+        display: none; /* Hide arrow on mobile as dropdown opens differently */
+    }
+}

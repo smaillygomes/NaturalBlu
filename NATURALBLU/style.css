@@ -606,4 +606,19 @@ footer {
     display: block; /* remove espaços extras causados por comportamento inline */
 }
 
+.user-actions a[href="#cart"] i.fa-shopping-cart {
+    color: #000 !important; /* preto normalmente */
+    transition: color 0.3s;
+}
 
+.user-actions a[href="#cart"]:hover i.fa-shopping-cart {
+    color: var(--accent-color) !important; /* cor de destaque no hover */
+}
+
+.user-actions a i {
+    transition: color 0.3s;
+}
+
+.user-actions a:hover i {
+    color: var(--accent-color);
+}
