@@ -23,7 +23,7 @@
 
 body {
     /* ===== CAMINHO CORRIGIDO AQUI ===== */
-    background: url("../imagens/cadastro-bg.jpg") no-repeat center/cover;
+    background: url("../assets/images/cadastro-bg.jpg") no-repeat center/cover;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,16 +1,19 @@
-// Arquivo: homepage-scripts.js
-
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Referências aos elementos do DOM ---
     const cartIcon = document.getElementById('cart-icon');
     const cartDropdown = document.getElementById('cart-dropdown');
     const cartItemsList = document.getElementById('cart-items-list');
     const cartCount = document.getElementById('cart-count');
     const cartTotalPrice = document.getElementById('cart-total-price');
+    const productsGrid = document.querySelector('.products-grid'); // <- Pegamos a grade de produtos
 
+    /**
+     * Função principal que lê o LocalStorage e desenha o carrinho na tela.
+     */
     function renderizarCarrinho() {
         const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-        cartItemsList.innerHTML = '';
+        cartItemsList.innerHTML = ''; 
         cartCount.textContent = carrinho.length;
 
         if (carrinho.length === 0) {
@@ -21,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             carrinho.forEach(item => {
                 const itemElement = document.createElement('div');
                 itemElement.classList.add('cart-item');
-                itemElement.dataset.itemId = item.id;
+                itemElement.dataset.itemId = item.id; 
                 itemElement.innerHTML = `
                     <div class="cart-item-info">
                         <span class="item-name">${item.nome}</span>
@@ -36,11 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Lógica de Eventos ---
+
+    // Evento para abrir/fechar o carrinho
     cartIcon.addEventListener('click', (event) => {
         event.preventDefault();
         cartDropdown.classList.toggle('show');
     });
 
+    // Evento para fechar o carrinho ao clicar fora
+    document.addEventListener('click', (event) => {
+        const isClickInsideCart = cartDropdown.contains(event.target);
+        const isClickOnIcon = cartIcon.contains(event.target);
+        if (cartDropdown.classList.contains('show') && !isClickInsideCart && !isClickOnIcon) {
+            cartDropdown.classList.remove('show');
+        }
+    });
+
+    // Evento para remover itens do carrinho (delegação de evento)
     cartItemsList.addEventListener('click', (event) => {
         if (event.target.classList.contains('remove-item-btn')) {
             const itemId = event.target.closest('.cart-item').dataset.itemId;
@@ -51,17 +67,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.addEventListener('click', (event) => {
-        // Verifica se o carrinho está visível E se o clique NÃO foi dentro do painel do carrinho
-        // E também se o clique NÃO foi no próprio ícone do carrinho (para evitar que ele feche e abra ao mesmo tempo)
-        const isClickInsideCart = cartDropdown.contains(event.target);
-        const isClickOnIcon = cartIcon.contains(event.target);
+    // ===== NOVA LÓGICA PARA ADICIONAR PRODUTOS AO CARRINHO =====
+    if(productsGrid) { // Garante que a grade de produtos existe na página
+        productsGrid.addEventListener('click', (event) => {
+            // Verifica se o clique foi em um botão 'adicionar ao carrinho' ou em seu ícone
+            const button = event.target.closest('.add-to-cart-btn');
+            if (button) {
+                // Pega o card do produto pai do botão que foi clicado
+                const card = button.closest('.product-card');
+                
+                // Extrai as informações dos atributos data-* que colocamos no HTML
+                const produtoParaAdicionar = {
+                    id: card.dataset.productId,
+                    nome: card.dataset.productName,
+                    preco: parseFloat(card.dataset.productPrice),
+                    tipo: 'Produto' // Para diferenciar de um 'Mix Personalizado'
+                };
+                
+                // Pega o carrinho atual, adiciona o novo item e salva de volta
+                const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+                carrinho.push(produtoParaAdicionar);
+                localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                
+                // Re-renderiza o carrinho para mostrar o item novo instantaneamente
+                renderizarCarrinho();
 
-        if (cartDropdown.classList.contains('show') && !isClickInsideCart && !isClickOnIcon) {
-            cartDropdown.classList.remove('show');
-        }
-    });
-    // --- FIM DA NOVA LÓGICA ---
+                // (Opcional) Mostra uma pequena confirmação visual
+                alert(`"${produtoParaAdicionar.nome}" foi adicionado ao carrinho!`);
+            }
+        });
+    }
+    // ==========================================================
 
-    renderizarCarrinho();
+    // --- PONTO DE PARTIDA ---
+    // Renderiza o carrinho pela primeira vez quando a página carrega.
+    renderizarCarrinho(); 
 });

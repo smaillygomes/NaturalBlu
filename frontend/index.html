@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    
     <header>
         <div class="top-bar">
             <div class="container">
@@ -18,8 +17,8 @@
                     <span><i class="fas fa-phone"></i> Bem-vindo à sua loja de produtos naturais!</span>
                 </div>
                 <div class="auth-buttons">
-                    <a href=""><i class="fas fa-user"></i>Login</a>
-                    <a href="#register"><i class="fas fa-user-plus"></i> Cadastre-se</a>
+                    <a href="cadastro.html"><i class="fas fa-user"></i>Login</a>
+                    <a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastre-se</a>
                 </div>
             </div>
         </div>
@@ -28,15 +27,13 @@
             <div class="container">
                 <div class="header-content">
                     <div class="logo">
-                        <img src="https://png.pngtree.com/png-clipart/20230430/original/pngtree-circle-logo-100-natural-png-image_9127750.png" alt="Natureza Viva">
+                        <img src="assets/images/logo.png" alt="Natureza Viva">
                         <h1>Natural<span>Blu</span></h1>
                     </div>
-                    
                     <div class="search-bar">
                         <input type="text" placeholder="Buscar produtos...">
                         <button><i class="fas fa-search"></i></button>
                     </div>
-                    
                     <div class="user-actions">
                         <a href="#" id="cart-icon" class="cart-link">
                             <i class="fas fa-shopping-cart"></i>
@@ -51,21 +48,21 @@
         <nav>
             <div class="container">
                 <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
-                        <a href="#categories">Categorias <i class="fas fa-chevron-down"></i></a>
+                        <a href="#">Categorias <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
-                            <li><a href="#organic">Orgânicos</a></li>
-                            <li><a href="#vegan">Veganos</a></li>
-                            <li><a href="#gluten-free">Sem Glúten</a></li>
-                            <li><a href="#suplements">Suplementos</a></li>
-                            <li><a href="#teas">Chás</a></li>
+                            <li><a href="#">Orgânicos</a></li>
+                            <li><a href="#">Veganos</a></li>
+                            <li><a href="#">Sem Glúten</a></li>
+                            <li><a href="#">Suplementos</a></li>
+                            <li><a href="#">Chás</a></li>
                         </ul>
                     </li>
-                    <li><a href="#promotions">Promoções</a></li>
+                    <li><a href="#">Promoções</a></li>
                     <li><a href="mix.html">Produtos Personalizados</a></li>
-                    <li><a href="#about">Sobre Nós</a></li>
-                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
                 </ul>
             </div>
         </nav>
@@ -85,196 +82,190 @@
         </div>
     </div>
     
-    <section class="hero">
-        <div class="container">
-            <h2>Produtos Naturais para uma Vida Saudável</h2>
-            <p>Descubra os melhores produtos naturais, orgânicos e sustentáveis para cuidar da sua saúde e bem-estar.</p>
-            <a href="mix.html" class="btn">Monte seu Mix!</a>
-        </div>
-    </section>
-    
-    <section class="container">
-        <div class="section-title">
-            <h2>Nossos Produtos</h2>
-        </div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Produtos Naturais para uma Vida Saudável</h2>
+                <p>Descubra os melhores produtos naturais, orgânicos e sustentáveis para cuidar da sua saúde e bem-estar.</p>
+                <a href="mix.html" class="btn">Monte seu Mix!</a>
+            </div>
+        </section>
         
-        <div class="products-grid">
-            <div class="product-card">
-                <span class="product-badge">Novidade</span>
-                <div class="product-image"><img src="https://th.bing.com/th/id/OIP.9Pp8b-XiJIXOKflte21wggHaHa?rs=1&pid=ImgDetMain" alt="Mel Orgânico"></div>
-                <div class="product-info">
-                    <span class="product-category">Mel</span>
-                    <h3 class="product-title">Mel Orgânico 100% Puro</h3>
-                    <p class="product-description">Mel natural colhido de forma sustentável, sem adição de açúcares ou conservantes.</p>
-                    <div class="product-price">
-                        <div><span class="old-price">R$ 35,90</span><span class="price">R$ 29,90</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
+        <section class="container">
+            <div class="section-title">
+                <h2>Nossos Produtos</h2>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card" data-product-id="prod_01" data-product-name="Mel Orgânico 100% Puro" data-product-price="29.90">
+                    <span class="product-badge">Novidade</span>
+                    <div class="product-image"><img src="https://th.bing.com/th/id/OIP.9Pp8b-XiJIXOKflte21wggHaHa?rs=1&pid=ImgDetMain" alt="Mel Orgânico"></div>
+                    <div class="product-info">
+                        <span class="product-category">Mel</span>
+                        <h3 class="product-title">Mel Orgânico 100% Puro</h3>
+                        <p class="product-description">Mel natural colhido de forma sustentável, sem adição de açúcares ou conservantes.</p>
+                        <div class="product-price">
+                            <div><span class="old-price">R$ 35,90</span><span class="price">R$ 29,90</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="prod_02" data-product-name="Granola Caseira Integral" data-product-price="18.90">
+                    <div class="product-image"><img src="https://th.bing.com/th/id/OIP.wGmMl0OGYcWHR-lytZs24AHaJ4?rs=1&pid=ImgDetMain" alt="Granola"></div>
+                    <div class="product-info">
+                        <span class="product-category">Cereais</span>
+                        <h3 class="product-title">Granola Caseira Integral</h3>
+                        <p class="product-description">Granola artesanal com castanhas, frutas secas e mel, sem conservantes.</p>
+                        <div class="product-price">
+                            <div><span class="price">R$ 18,90</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="prod_03" data-product-name="Óleo de Coco Extra Virgem" data-product-price="42.50">
+                    <span class="product-badge">Mais Vendido</span>
+                    <div class="product-image"><img src="https://cruda.com.br/uploads/7/9/9/3/79930458/0608-oils-2148x1416-1_orig.jpg" alt="Óleo de Coco"></div>
+                    <div class="product-info">
+                        <span class="product-category">Óleos</span>
+                        <h3 class="product-title">Óleo de Coco Extra Virgem</h3>
+                        <p class="product-description">Óleo de coco 100% puro, prensado a frio, em embalagem de vidro.</p>
+                        <div class="product-price">
+                            <div><span class="price">R$ 42,50</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="prod_04" data-product-name="Chá Verde Orgânico" data-product-price="19.90">
+                    <div class="product-image"><img src="https://th.bing.com/th/id/OIP.C-kmbAQSBidTcaTNyuJb1AHaE7?rs=1&pid=ImgDetMain" alt="Chá Verde"></div>
+                    <div class="product-info">
+                        <span class="product-category">Chás</span>
+                        <h3 class="product-title">Chá Verde Orgânico</h3>
+                        <p class="product-description">Chá verde em folhas, cultivado sem agrotóxicos, em embalagem sustentável.</p>
+                        <div class="product-price">
+                            <div><span class="old-price">R$ 24,90</span><span class="price">R$ 19,90</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="prod_05" data-product-name="Farinha de Amêndoas" data-product-price="32.90">
+                    <div class="product-image"><img src="https://th.bing.com/th/id/OIP.ZJPnRxbnxQlYEX2R2PpvhgHaE8?rs=1&pid=ImgDetMain" alt="Farinha de Amêndoas"></div>
+                    <div class="product-info">
+                        <span class="product-category">Farinhas</span>
+                        <h3 class="product-title">Farinha de Amêndoas</h3>
+                        <p class="product-description">Farinha de amêndoas 100% natural, sem glúten e sem aditivos.</p>
+                        <div class="product-price">
+                            <div><span class="price">R$ 32,90</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="prod_06" data-product-name="Kit Suco Detox (3 Unidades)" data-product-price="36.90">
+                    <span class="product-badge">Promoção</span>
+                    <div class="product-image"><img src="https://www.receiteria.com.br/wp-content/uploads/receitas-de-sucos-detox.png" alt="Suco Detox"></div>
+                    <div class="product-info">
+                        <span class="product-category">Bebidas</span>
+                        <h3 class="product-title">Kit Suco Detox (3 Unidades)</h3>
+                        <p class="product-description">Sucos naturais sem conservantes, combinações de frutas e vegetais.</p>
+                        <div class="product-price">
+                            <div><span class="old-price">R$ 45,00</span><span class="price">R$ 36,90</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="prod_07" data-product-name="Castanha-do-Pará Orgânica" data-product-price="28.50">
+                    <div class="product-image"><img src="https://th.bing.com/th/id/R.cebebd82b3e4048bb421f7c3eabd0ca7?rik=x0IETdpqrxF5zw&pid=ImgRaw&r=0" alt="Castanha-do-Pará"></div>
+                    <div class="product-info">
+                        <span class="product-category">Castanhas</span>
+                        <h3 class="product-title">Castanha-do-Pará Orgânica</h3>
+                        <p class="product-description">Castanhas selecionadas, sem sal e sem conservantes, embalagem a vácuo.</p>
+                        <div class="product-price">
+                            <div><span class="price">R$ 28,50</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="prod_08" data-product-name="Sabonete Natural de Argila Verde" data-product-price="14.90">
+                    <div class="product-image"><img src="https://th.bing.com/th/id/R.cdb1235962dae58378ebbc2524aa60fd?rik=dj3%2b24ix%2fEZnfA&pid=ImgRaw&r=0" alt="Sabonete Natural"></div>
+                    <div class="product-info">
+                        <span class="product-category">Cosméticos</span>
+                        <h3 class="product-title">Sabonete Natural de Argila Verde</h3>
+                        <p class="product-description">Sabonete artesanal com óleos essenciais, sem parabenos ou sulfatos.</p>
+                        <div class="product-price">
+                            <div><span class="price">R$ 14,90</span></div>
+                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="product-card">
-                <div class="product-image"><img src="https://th.bing.com/th/id/OIP.wGmMl0OGYcWHR-lytZs24AHaJ4?rs=1&pid=ImgDetMain" alt="Granola"></div>
-                <div class="product-info">
-                    <span class="product-category">Cereais</span>
-                    <h3 class="product-title">Granola Caseira Integral</h3>
-                    <p class="product-description">Granola artesanal com castanhas, frutas secas e mel, sem conservantes.</p>
-                    <div class="product-price">
-                        <div><span class="price">R$ 18,90</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
-                    </div>
+        </section>
+        
+        <section class="custom-products">
+            <div class="container">
+                <div class="section-title"><h2>Produtos Personalizados</h2></div>
+                <div class="custom-options">
+                    <div class="custom-option"><i class="fas fa-box-open"></i><h3>Kits Personalizados</h3><p>Monte seu próprio kit com os produtos que você mais gosta e receba em casa.</p><a href="#" class="btn">Montar Kit</a></div>
+                    <div class="custom-option"><i class="fas fa-heart"></i><h3>Assinatura Mensal</h3><p>Receba mensalmente uma caixa surpresa com produtos selecionados.</p><a href="#" class="btn">Assinar</a></div>
+                    <div class="custom-option"><i class="fas fa-gift"></i><h3>Presentes Naturais</h3><p>Presenteie quem você ama com nossos kits especiais para diversas ocasiões.</p><a href="#" class="btn">Ver Opções</a></div>
                 </div>
             </div>
-            <div class="product-card">
-                <span class="product-badge">Mais Vendido</span>
-                <div class="product-image"><img src="https://cruda.com.br/uploads/7/9/9/3/79930458/0608-oils-2148x1416-1_orig.jpg" alt="Óleo de Coco"></div>
-                <div class="product-info">
-                    <span class="product-category">Óleos</span>
-                    <h3 class="product-title">Óleo de Coco Extra Virgem</h3>
-                    <p class="product-description">Óleo de coco 100% puro, prensado a frio, em embalagem de vidro.</p>
-                    <div class="product-price">
-                        <div><span class="price">R$ 42,50</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
-                    </div>
-                </div>
+        </section>
+        
+        <section class="newsletter">
+            <div class="container">
+                <h2>Assine Nossa Newsletter</h2>
+                <p>Receba novidades, promoções exclusivas e dicas de vida saudável diretamente no seu e-mail.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu melhor e-mail">
+                    <button type="submit">Assinar</button>
+                </form>
             </div>
-            <div class="product-card">
-                <div class="product-image"><img src="https://th.bing.com/th/id/OIP.C-kmbAQSBidTcaTNyuJb1AHaE7?rs=1&pid=ImgDetMain" alt="Chá Verde"></div>
-                <div class="product-info">
-                    <span class="product-category">Chás</span>
-                    <h3 class="product-title">Chá Verde Orgânico</h3>
-                    <p class="product-description">Chá verde em folhas, cultivado sem agrotóxicos, em embalagem sustentável.</p>
-                    <div class="product-price">
-                        <div><span class="old-price">R$ 24,90</span><span class="price">R$ 19,90</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image"><img src="https://th.bing.com/th/id/OIP.ZJPnRxbnxQlYEX2R2PpvhgHaE8?rs=1&pid=ImgDetMain" alt="Farinha de Amêndoas"></div>
-                <div class="product-info">
-                    <span class="product-category">Farinhas</span>
-                    <h3 class="product-title">Farinha de Amêndoas</h3>
-                    <p class="product-description">Farinha de amêndoas 100% natural, sem glúten e sem aditivos.</p>
-                    <div class="product-price">
-                        <div><span class="price">R$ 32,90</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <span class="product-badge">Promoção</span>
-                <div class="product-image"><img src="https://www.receiteria.com.br/wp-content/uploads/receitas-de-sucos-detox.png" alt="Suco Detox"></div>
-                <div class="product-info">
-                    <span class="product-category">Bebidas</span>
-                    <h3 class="product-title">Kit Suco Detox (3 Unidades)</h3>
-                    <p class="product-description">Sucos naturais sem conservantes, combinações de frutas e vegetais.</p>
-                    <div class="product-price">
-                        <div><span class="old-price">R$ 45,00</span><span class="price">R$ 36,90</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image"><img src="https://th.bing.com/th/id/R.cebebd82b3e4048bb421f7c3eabd0ca7?rik=x0IETdpqrxF5zw&pid=ImgRaw&r=0" alt="Castanha-do-Pará"></div>
-                <div class="product-info">
-                    <span class="product-category">Castanhas</span>
-                    <h3 class="product-title">Castanha-do-Pará Orgânica</h3>
-                    <p class="product-description">Castanhas selecionadas, sem sal e sem conservantes, embalagem a vácuo.</p>
-                    <div class="product-price">
-                        <div><span class="price">R$ 28,50</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image"><img src="https://th.bing.com/th/id/R.cdb1235962dae58378ebbc2524aa60fd?rik=dj3%2b24ix%2fEZnfA&pid=ImgRaw&r=0" alt="Sabonete Natural"></div>
-                <div class="product-info">
-                    <span class="product-category">Cosméticos</span>
-                    <h3 class="product-title">Sabonete Natural de Argila Verde</h3>
-                    <p class="product-description">Sabonete artesanal com óleos essenciais, sem parabenos ou sulfatos.</p>
-                    <div class="product-price">
-                        <div><span class="price">R$ 14,90</span></div>
-                        <div class="product-actions"><button><i class="fas fa-shopping-cart"></i></button></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="custom-products">
-        <div class="container">
-            <div class="section-title"><h2>Produtos Personalizados</h2></div>
-            <div class="custom-options">
-                <div class="custom-option"><i class="fas fa-box-open"></i><h3>Kits Personalizados</h3><p>Monte seu próprio kit com os produtos que você mais gosta e receba em casa.</p><a href="#custom-kits" class="btn">Montar Kit</a></div>
-                <div class="custom-option"><i class="fas fa-heart"></i><h3>Assinatura Mensal</h3><p>Receba mensalmente uma caixa surpresa com produtos selecionados especialmente para você.</p><a href="#subscription" class="btn">Assinar</a></div>
-                <div class="custom-option"><i class="fas fa-gift"></i><h3>Presentes Naturais</h3><p>Presenteie quem você ama com nossos kits especiais para diversas ocasiões.</p><a href="#gifts" class="btn">Ver Opções</a></div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="newsletter">
-        <div class="container">
-            <h2>Assine Nossa Newsletter</h2>
-            <p>Receba novidades, promoções exclusivas e dicas de vida saudável diretamente no seu e-mail.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Seu melhor e-mail">
-                <button type="submit">Assinar</button>
-            </form>
-        </div>
-    </section>
-    
+        </section>
+    </main>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>NaturalBlu</h3>
-                    <p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis desde 2010.</p>
+                    <p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis.</p>
                     <div class="social-links">
-                        <a href="#facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#pinterest"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Institucional</h3>
                     <ul>
-                        <li><a href="#about">Sobre Nós</a></li>
-                        <li><a href="#values">Nossos Valores</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#jobs">Trabalhe Conosco</a></li>
-                        <li><a href="#partners">Parceiros</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Nossos Valores</a></li>
+                        <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Ajuda</h3>
                     <ul>
-                        <li><a href="#faq">Perguntas Frequentes</a></li>
-                        <li><a href="#shipping">Entregas</a></li>
-                        <li><a href="#returns">Trocas e Devoluções</a></li>
-                        <li><a href="#payments">Formas de Pagamento</a></li>
-                        <li><a href="#contact">Fale Conosco</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                        <li><a href="#">Entregas</a></li>
+                        <li><a href="#">Fale Conosco</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Minha Conta</h3>
                     <ul>
-                        <li><a href="#login">Minha Conta</a></li>
-                        <li><a href="#orders">Meus Pedidos</a></li>
-                        <li><a href="#wishlist">Lista de Desejos</a></li>
-                        <li><a href="#addresses">Meus Endereços</a></li>
-                        <li><a href="#vouchers">Vale-Presentes</a></li>
+                        <li><a href="#">Minha Conta</a></li>
+                        <li><a href="#">Meus Pedidos</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 NaturalBlu - Todos os direitos reservados. CNPJ: 12.345.678/0001-99</p>
+                <p>&copy; 2025 NaturalBlu - Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <a class="botao-wpp" href="https://wa.me/5547984692576" target="_blank"> 
-        <img src="download.png" alt="" width="60px">
+        <img src="assets/images/whatsapp_icon.png" alt="WhatsApp" width="60px">
     </a>
 
     <script src="js/homepage.js"></script>
