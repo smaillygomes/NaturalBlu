@@ -1,10 +1,12 @@
 // 1. Importar os módulos necessários
 require('dotenv').config(); // Carrega as variáveis do arquivo .env para process.env - FAÇA ISSO PRIMEIRO!
 
+
 const express = require('express');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
+const path = require('path');
 
 // 2. Configurações iniciais
 const app = express();
@@ -15,6 +17,7 @@ const apiPort = process.env.API_PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // 4. Configuração da Conexão com o Banco de Dados MySQL
 //    Agora lendo as informações do process.env
