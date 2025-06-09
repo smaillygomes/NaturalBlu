@@ -1,4 +1,4 @@
-// Conteúdo para o arquivo scripts.js
+// Arquivo: scripts.js
 
 // Função para mostrar o resumo do mix na tela
 function mostrarResumo() {
@@ -13,11 +13,9 @@ function mostrarResumo() {
     
     const nome = document.getElementById('nomeMix').value || "Meu Mix Personalizado";
     
-    // Calcula o preço total apenas para exibição na tela
     let total = 0;
     ingredientes.forEach(ing => total += ing.price);
     
-    // Atualiza os elementos do resumo no HTML
     document.getElementById('nomeSelecionado').textContent = nome;
     
     const ingredientesList = document.getElementById('ingredientesSelecionados');
@@ -37,43 +35,54 @@ function mostrarResumo() {
     document.getElementById('resumo').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Função assíncrona para salvar o mix no banco de dados via API
+// Função assíncrona para salvar o mix no banco de dados E no carrinho local
 async function adicionarAoCarrinho() {
     console.log("Iniciando processo para salvar o mix...");
 
-    // 1. Coletar os dados da tela
     const nomeMix = document.getElementById('nomeMix').value || "Meu Mix Personalizado";
     const checkboxes = document.querySelectorAll('.ingrediente:checked');
     const ingredientesNomes = Array.from(checkboxes).map(cb => cb.value);
 
-    // Validação simples no frontend
     if (ingredientesNomes.length === 0) {
         alert("Por favor, selecione pelo menos um ingrediente para o seu mix!");
         return;
     }
 
-    // 2. Montar o objeto de dados para enviar
     const mixData = {
         nomeMix: nomeMix,
         ingredientes: ingredientesNomes
     };
 
-    console.log("Enviando para a API:", mixData);
-    
-    // 3. Enviar os dados para o backend com a API fetch
     try {
         const response = await fetch('http://localhost:3000/api/mixes', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(mixData),
         });
 
         const result = await response.json();
 
         if (response.ok) {
-            alert(`Sucesso! Seu mix "${result.nome}" foi criado e salvo!`);
+            // LÓGICA DO CARRINHO
+            // 1. Pega o carrinho atual do LocalStorage ou cria um array vazio.
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+            // 2. Adiciona o novo mix ao carrinho.
+            carrinho.push({
+                id: `mix_${result.mixId}`,
+                nome: result.nome,
+                preco: result.preco,
+                tipo: 'Mix Personalizado'
+            });
+
+            // 3. Salva o carrinho atualizado de volta no LocalStorage.
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+            // 4. Avisa o usuário e o redireciona para a página inicial.
+            //    (ASSUMINDO QUE SUA HOMEPAGE SE CHAMA 'index.html'. Se for outro nome, altere aqui)
+            alert(`Seu mix "${result.nome}" foi criado e adicionado ao carrinho!`);
+            window.location.href = 'index.html';
+
         } else {
             alert(`Ocorreu um erro: ${result.message}`);
         }
@@ -95,10 +104,10 @@ function getMaxSelections(category) {
     if (category.includes('base')) return 2;
     if (category.includes('Castanhas')) return 3;
     if (category.includes('Frutas')) return 2;
-    return 100; // Um número alto para "sem limite" na categoria extra
+    return 100;
 }
 
-// Adiciona o listener para todos os checkboxes de ingredientes assim que o script carrega
+// Adiciona o listener para todos os checkboxes de ingredientes
 document.querySelectorAll('.ingrediente').forEach(checkbox => {
     checkbox.addEventListener('change', function() {
         const category = this.closest('.section').querySelector('h2').textContent;
