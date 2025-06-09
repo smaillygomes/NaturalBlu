@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* :root define variáveis CSS globais (Custom Properties) */
 :root {
     --cor-primaria: #01a301;
     --cor-primaria-hover: #028a02;
@@ -15,7 +14,6 @@
     --sombra-interna: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Reset Universal e Padrões Globais --- */
 * {
     margin: 0;
     padding: 0;
@@ -23,9 +21,9 @@
     font-family: "Montserrat", sans-serif;
 }
 
-/* --- Estilos do Corpo da Página --- */
 body {
-    background: url("imagens/background-tela_cadastro.jpg") no-repeat center/cover;
+    /* ===== CAMINHO CORRIGIDO AQUI ===== */
+    background: url("../imagens/cadastro-bg.jpg") no-repeat center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +31,6 @@ body {
     min-height: 100vh;
 }
 
-/* --- Container Principal --- */
 .box {
     display: flex;
     width: 930px;
@@ -43,7 +40,6 @@ body {
     overflow: hidden;
 }
 
-/* --- Seção da Imagem (Logo) --- */
 .img-box {
     width: 50%;
     display: flex;
@@ -60,7 +56,6 @@ body {
     box-shadow: var(--sombra-interna);
 }
 
-/* --- Seção do Formulário --- */
 .form-box {
     background-color: var(--cor-fundo-form-box);
     padding: 40px 50px;
@@ -92,7 +87,6 @@ body {
     margin: 20px 0;
 }
 
-/* --- Elementos do Formulário --- */
 form .input-group {
     margin-bottom: 20px;
 }
@@ -139,7 +133,6 @@ form .input-group button:hover {
     background-color: var(--cor-primaria-hover);
 }
 
-/* --- Ajustes Responsivos --- */
 @media (max-width: 930px) {
     .img-box {
         display: none;
