@@ -88,6 +88,104 @@ app.get('/api', (req, res) => {
     res.json({ message: 'API do NaturalBlu está funcionando!' });
 });
 
+// ==========================================================
+// 6. Rota para Salvar um Mix Personalizado (`/api/mixes`)
+// ==========================================================
+app.post('/api/mixes', async (req, res) => {
+    // Pega o nome do mix e a lista de nomes de ingredientes do corpo da requisição
+    const { nomeMix, ingredientes } = req.body;
+
+    // --- 1. Validação Simples ---
+    if (!nomeMix || !ingredientes || !Array.isArray(ingredientes) || ingredientes.length === 0) {
+        return res.status(400).json({ message: 'Nome do mix e lista de ingredientes são obrigatórios.' });
+    }
+
+    let connection; // Define a conexão fora do try para poder usar no catch/finally
+
+    try {
+        // --- 2. Conectar ao Banco ---
+        connection = await mysql.createConnection(dbConfig);
+
+        // --- 3. Iniciar Transação ---
+        // Usamos transação porque precisamos inserir em duas tabelas (mixes e mix_produtos).
+        // Se der erro em uma, cancelamos tudo (rollback) para não deixar dados inconsistentes.
+        await connection.beginTransaction();
+        console.log("Transação iniciada.");
+
+        // --- 4. Buscar Produtos e Calcular Preço ---
+        // Criamos uma lista de '?' para usar na consulta SQL 'IN' de forma segura
+        const placeholders = ingredientes.map(() => '?').join(',');
+        const query = `SELECT id, nome, preco FROM produtos WHERE nome IN (${placeholders})`;
+
+        console.log("Buscando produtos:", ingredientes);
+        const [produtosDoMix] = await connection.execute(query, ingredientes);
+
+        // Verifica se todos os ingredientes enviados foram encontrados no banco
+        if (produtosDoMix.length !== ingredientes.length) {
+            await connection.rollback(); // Cancela a transação
+            console.error("Erro: Um ou mais ingredientes não foram encontrados no banco.");
+            return res.status(400).json({ message: 'Erro: Um ou mais ingredientes selecionados são inválidos.' });
+        }
+
+        // Calcula o preço total SOMANDO o preço de cada produto encontrado.
+        // **Importante:** Aquele BASE_PRICE de R$29,90 do HTML original não está sendo usado aqui.
+        // Estamos calculando o preço *real* baseado nos itens. Se precisar de uma taxa base,
+        // podemos adicionar depois!
+        const precoTotal = produtosDoMix.reduce((total, produto) => total + parseFloat(produto.preco), 0);
+        console.log("Preço Total Calculado:", precoTotal);
+
+        // --- 5. Inserir na Tabela 'mixes' ---
+        // Por enquanto, não estamos associando a um usuário (usuario_id = NULL)
+        const [mixResult] = await connection.execute(
+            'INSERT INTO mixes (nome_mix, preco_total, usuario_id) VALUES (?, ?, ?)',
+            [nomeMix, precoTotal, null] // Usando null para usuario_id
+        );
+        const novoMixId = mixResult.insertId; // Pega o ID do mix que acabamos de criar
+        console.log("Mix inserido com ID:", novoMixId);
+
+        // --- 6. Inserir na Tabela 'mix_produtos' ---
+        // Prepara os dados para inserir todos os ingredientes de uma vez (mais eficiente)
+        const mixProdutosData = produtosDoMix.map(produto => [novoMixId, produto.id]);
+
+        // Cria a query para inserir múltiplos valores
+        const insertProdutosQuery = 'INSERT INTO mix_produtos (mix_id, produto_id) VALUES ?';
+        await connection.query(insertProdutosQuery, [mixProdutosData]);
+        console.log("Ingredientes do mix inseridos.");
+
+        // --- 7. Confirmar a Transação ---
+        // Se chegamos até aqui sem erros, podemos confirmar todas as operações.
+        await connection.commit();
+        console.log("Transação confirmada (commit).");
+
+        // --- 8. Enviar Resposta de Sucesso ---
+        res.status(201).json({
+            message: 'Mix personalizado criado com sucesso!',
+            mixId: novoMixId,
+            nome: nomeMix,
+            preco: precoTotal,
+            ingredientes: produtosDoMix.map(p => p.nome) // Devolve os nomes para confirmação
+        });
+
+    } catch (error) {
+        // --- Tratamento de Erro ---
+        console.error('Erro no servidor ao tentar salvar o mix:', error);
+        // Se a conexão foi aberta e deu erro, cancelamos a transação
+        if (connection) {
+            console.log("Erro detectado, cancelando transação (rollback).");
+            await connection.rollback();
+        }
+        res.status(500).json({ message: 'Erro interno no servidor ao tentar salvar o mix.' });
+
+    } finally {
+        // --- 9. Fechar Conexão ---
+        // Independentemente de ter dado certo ou erro, fechamos a conexão.
+        if (connection) {
+            await connection.end();
+            console.log("Conexão com o banco fechada.");
+        }
+    }
+});
+
 // 6. Iniciar o Servidor
 app.listen(apiPort, () => {
     console.log(`Servidor backend NaturalBlu rodando em http://localhost:${apiPort}`);
