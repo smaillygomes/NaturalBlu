@@ -718,3 +718,69 @@ footer {
     background-color: var(--dark-color);
     color: var(--white);
 }
+
+/* Estilo padrão do ícone do carrinho */
+.cart-link {
+    position: relative;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover no ícone do carrinho */
+.cart-link:hover {
+    color: var(--primary-color); /* Substitua pela cor desejada */
+    transform: scale(1.1); /* Aumenta o tamanho do ícone */
+}
+
+/* Estilo do contador do carrinho */
+.cart-count-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--secondary-color); /* Substitua pela cor desejada */
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Efeito de hover no contador */
+.cart-link:hover .cart-count-badge {
+    background-color: var(--primary-color); /* Substitua pela cor desejada */
+}
+
+/* Estilo padrão do ícone do carrinho */
+#cart-icon {
+    position: relative;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover no ícone do carrinho */
+#cart-icon:hover {
+    color: var(--primary-color); /* Substitua pela cor desejada */
+    transform: scale(1.1); /* Aumenta o tamanho do ícone */
+}
+
+/* Estilo do contador do carrinho */
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--secondary-color); /* Substitua pela cor desejada */
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Efeito de hover no contador */
+#cart-icon:hover #cart-count {
+    background-color: var(--primary-color); /* Substitua pela cor desejada */
+}

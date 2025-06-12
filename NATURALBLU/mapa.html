@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+     <style>
+#map{
+    height: 600px;
+    width: 100%;
+}
+
+     </style>
+</head>
+<body>
+    <h1>Mapa de Blumenau</h1>
+    <div id = "map">
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>">
+
+        <script>
+            const map = L.map('map').setView([-26.9158, -49.0703], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        l.marker([-26.90684376283934, -49.07827683014617]).addTo(map)
+            .bindPopup(`
+              <b>Blumenau</b><br>
+              Blumenau é uma cidade localizada no estado de Santa Catarina, Brasil.
+            `)
+             .openPopup();
+             fetch('pontos.json')
+             .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+             }
+                )
+                .then(pontos => {
+                    pontos.forEach(ponto => {
+                        L.marker([ponto.lat, ponto.lng])
+                            .addTo(map)
+                            .bindPopup(`
+                                <b>${ponto.nome}</b><br>
+                                ${ponto.nome}   é um ponto de interesse em Blumenau.<br>
+                                <a href="${ponto.link}" target="_blank">Mais informações</a>
+                            `);
+                    });
+                })
+
+        </script>
+        
+      
+</body>
+</html>
