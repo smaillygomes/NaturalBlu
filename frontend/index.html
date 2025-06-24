@@ -48,15 +48,15 @@
         <nav>
             <div class="container">
                 <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" id="show-all-products">Home</a></li>
                     <li>
                         <a href="#">Categorias <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
-                            <li><a href="#">Orgânicos</a></li>
-                            <li><a href="#">Veganos</a></li>
-                            <li><a href="#">Sem Glúten</a></li>
-                            <li><a href="#">Suplementos</a></li>
-                            <li><a href="#">Chás</a></li>
+                            <li><a href="#" class="category-filter-link" data-category="organicos">Orgânicos</a></li>
+                            <li><a href="#" class="category-filter-link" data-category="veganos">Veganos</a></li>
+                            <li><a href="#" class="category-filter-link" data-category="sem-gluten">Sem Glúten</a></li>
+                            <li><a href="#" class="category-filter-link" data-category="suplementos">Suplementos</a></li>
+                            <li><a href="#" class="category-filter-link" data-category="chas">Chás</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Promoções</a></li>
@@ -97,7 +97,7 @@
             </div>
             
             <div class="products-grid">
-                <div class="product-card" data-product-id="prod_01" data-product-name="Mel Orgânico 100% Puro" data-product-price="29.90">
+                <div class="product-card" data-product-id="prod_01" data-product-name="Mel Orgânico 100% Puro" data-product-price="29.90" data-category="organicos">
                     <span class="product-badge">Novidade</span>
                     <div class="product-image"><img src="https://th.bing.com/th/id/OIP.9Pp8b-XiJIXOKflte21wggHaHa?rs=1&pid=ImgDetMain" alt="Mel Orgânico"></div>
                     <div class="product-info">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-product-id="prod_02" data-product-name="Granola Caseira Integral" data-product-price="18.90">
+                <div class="product-card" data-product-id="prod_02" data-product-name="Granola Caseira Integral" data-product-price="18.90" data-category="sem-gluten">
                     <div class="product-image"><img src="https://th.bing.com/th/id/OIP.wGmMl0OGYcWHR-lytZs24AHaJ4?rs=1&pid=ImgDetMain" alt="Granola"></div>
                     <div class="product-info">
                         <span class="product-category">Cereais</span>
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-product-id="prod_03" data-product-name="Óleo de Coco Extra Virgem" data-product-price="42.50">
+                <div class="product-card" data-product-id="prod_03" data-product-name="Óleo de Coco Extra Virgem" data-product-price="42.50" data-category="veganos organicos">
                     <span class="product-badge">Mais Vendido</span>
                     <div class="product-image"><img src="https://cruda.com.br/uploads/7/9/9/3/79930458/0608-oils-2148x1416-1_orig.jpg" alt="Óleo de Coco"></div>
                     <div class="product-info">
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-product-id="prod_04" data-product-name="Chá Verde Orgânico" data-product-price="19.90">
+                <div class="product-card" data-product-id="prod_04" data-product-name="Chá Verde Orgânico" data-product-price="19.90" data-category="chas organicos">
                     <div class="product-image"><img src="https://th.bing.com/th/id/OIP.C-kmbAQSBidTcaTNyuJb1AHaE7?rs=1&pid=ImgDetMain" alt="Chá Verde"></div>
                     <div class="product-info">
                         <span class="product-category">Chás</span>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-product-id="prod_05" data-product-name="Farinha de Amêndoas" data-product-price="32.90">
+                <div class="product-card" data-product-id="prod_05" data-product-name="Farinha de Amêndoas" data-product-price="32.90" data-category="sem-gluten">
                     <div class="product-image"><img src="https://th.bing.com/th/id/OIP.ZJPnRxbnxQlYEX2R2PpvhgHaE8?rs=1&pid=ImgDetMain" alt="Farinha de Amêndoas"></div>
                     <div class="product-info">
                         <span class="product-category">Farinhas</span>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-product-id="prod_06" data-product-name="Kit Suco Detox (3 Unidades)" data-product-price="36.90">
+                <div class="product-card" data-product-id="prod_06" data-product-name="Kit Suco Detox (3 Unidades)" data-product-price="36.90" data-category="veganos">
                     <span class="product-badge">Promoção</span>
                     <div class="product-image"><img src="https://www.receiteria.com.br/wp-content/uploads/receitas-de-sucos-detox.png" alt="Suco Detox"></div>
                     <div class="product-info">
@@ -172,7 +172,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-product-id="prod_07" data-product-name="Castanha-do-Pará Orgânica" data-product-price="28.50">
+                <div class="product-card" data-product-id="prod_07" data-product-name="Castanha-do-Pará Orgânica" data-product-price="28.50" data-category="organicos">
                     <div class="product-image"><img src="https://th.bing.com/th/id/R.cebebd82b3e4048bb421f7c3eabd0ca7?rik=x0IETdpqrxF5zw&pid=ImgRaw&r=0" alt="Castanha-do-Pará"></div>
                     <div class="product-info">
                         <span class="product-category">Castanhas</span>
@@ -184,7 +184,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-product-id="prod_08" data-product-name="Sabonete Natural de Argila Verde" data-product-price="14.90">
+                <div class="product-card" data-product-id="prod_08" data-product-name="Sabonete Natural de Argila Verde" data-product-price="14.90" data-category="veganos">
                     <div class="product-image"><img src="https://th.bing.com/th/id/R.cdb1235962dae58378ebbc2524aa60fd?rik=dj3%2b24ix%2fEZnfA&pid=ImgRaw&r=0" alt="Sabonete Natural"></div>
                     <div class="product-info">
                         <span class="product-category">Cosméticos</span>

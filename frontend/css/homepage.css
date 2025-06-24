@@ -784,3 +784,13 @@ footer {
 #cart-icon:hover #cart-count {
     background-color: var(--primary-color); /* Substitua pela cor desejada */
 }
+
+/* Animação para TODOS os ícones nas ações do usuário */
+.user-actions a i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.user-actions a:hover i {
+    transform: scale(1.15); /* Efeito de zoom sutil */
+    color: var(--primary-color);
+}
