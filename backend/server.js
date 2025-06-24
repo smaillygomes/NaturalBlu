@@ -189,6 +189,33 @@ app.post('/api/mixes', async (req, res) => {
     }
 });
 
+// ==========================================================
+// 7. Rota para Listar todos os Produtos (`/api/produtos`)
+// ==========================================================
+app.get('/api/produtos', async (req, res) => {
+    let connection;
+    try {
+        console.log("Recebida requisição para listar produtos.");
+        connection = await mysql.createConnection(dbConfig);
+        
+        // Query para buscar todos os produtos que estão disponíveis para venda, em ordem alfabética.
+        const [produtos] = await connection.execute(
+            'SELECT * FROM produtos WHERE disponivel_venda = TRUE ORDER BY nome ASC'
+        );
+        
+        // Envia a lista de produtos como resposta em formato JSON
+        res.status(200).json(produtos);
+
+    } catch (error) {
+        console.error('Erro no servidor ao tentar listar produtos:', error);
+        res.status(500).json({ message: 'Erro interno no servidor.' });
+    } finally {
+        if (connection) {
+            await connection.end();
+        }
+    }
+});
+
 // 6. Iniciar o Servidor
 app.listen(apiPort, () => {
     console.log(`Servidor backend NaturalBlu rodando em http://localhost:${apiPort}`);
