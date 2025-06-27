@@ -216,7 +216,34 @@ app.get('/api/produtos', async (req, res) => {
     }
 });
 
-// 6. Iniciar o Servidor
+// Adicionar em backend/server.js
+
+// ==========================================================
+// 8. Rota para Listar produtos disponíveis para o MIX
+// ==========================================================
+app.get('/api/produtos-mix', async (req, res) => {
+    let connection;
+    try {
+        connection = await mysql.createConnection(dbConfig);
+        
+        // Query para buscar apenas os produtos marcados como 'disponivel_mix = TRUE'
+        const [ingredientes] = await connection.execute(
+            'SELECT * FROM produtos WHERE disponivel_mix = TRUE ORDER BY categoria, nome'
+        );
+        
+        res.status(200).json(ingredientes);
+
+    } catch (error) {
+        console.error('Erro no servidor ao tentar listar ingredientes do mix:', error);
+        res.status(500).json({ message: 'Erro interno no servidor.' });
+    } finally {
+        if (connection) {
+            await connection.end();
+        }
+    }
+});
+
+// 9. Iniciar o Servidor
 app.listen(apiPort, () => {
     console.log(`Servidor backend NaturalBlu rodando em http://localhost:${apiPort}`);
     console.log(`Endpoint de cadastro disponível em POST http://localhost:${apiPort}/api/register`);
