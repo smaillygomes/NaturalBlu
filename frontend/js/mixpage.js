@@ -1,27 +1,36 @@
-// Arquivo: frontend/js/mixpage.js (Versão final para carregamento dinâmico)
+// Arquivo: frontend/js/mixpage.js (Versão Definitiva)
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Referências aos Contêineres ---
+    // Referências aos elementos da página de Mix
     const basesGrid = document.getElementById('base-grid');
     const castanhasGrid = document.getElementById('castanhas-grid');
     const frutasGrid = document.getElementById('frutas-grid');
     const extrasGrid = document.getElementById('extras-grid');
+    const visualizarResumoBtn = document.getElementById('visualizar-resumo-btn');
+    const adicionarCarrinhoMixBtn = document.getElementById('adicionar-carrinho-btn');
 
-    // --- Lógica de Carregamento Dinâmico ---
+    // Lógica para carregar os ingredientes do mix
     async function carregarIngredientes() {
+        // Verifica se os contêineres dos ingredientes existem nesta página
+        if (!basesGrid || !castanhasGrid || !frutasGrid || !extrasGrid) {
+            return; // Se não estiver na página de mix, não faz nada.
+        }
+
         try {
             const response = await fetch('/api/produtos-mix');
+            if (!response.ok) throw new Error("A resposta da rede para produtos-mix falhou.");
+            
             const ingredientes = await response.json();
 
             // Limpa as mensagens "Carregando..."
-            if(basesGrid) basesGrid.innerHTML = '';
-            if(castanhasGrid) castanhasGrid.innerHTML = '';
-            if(frutasGrid) frutasGrid.innerHTML = '';
-            if(extrasGrid) extrasGrid.innerHTML = '';
+            basesGrid.innerHTML = '';
+            castanhasGrid.innerHTML = '';
+            frutasGrid.innerHTML = '';
+            extrasGrid.innerHTML = '';
 
             ingredientes.forEach(ingrediente => {
-                const categoriaPrincipal = ingrediente.categoria.split(' ')[0];
+                const categoriaPrincipal = ingrediente.categoria.split(' ')[0].toLowerCase();
                 const cardHtml = `
                     <div class="ingredient-option">
                         <label>
@@ -36,29 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>`;
 
                 switch (categoriaPrincipal) {
-                    case 'base':
-                        basesGrid.innerHTML += cardHtml;
-                        break;
-                    case 'castanhas':
-                        castanhasGrid.innerHTML += cardHtml;
-                        break;
-                    case 'frutas':
-                        frutasGrid.innerHTML += cardHtml;
-                        break;
+                    case 'base': basesGrid.innerHTML += cardHtml; break;
+                    case 'castanhas': castanhasGrid.innerHTML += cardHtml; break;
+                    case 'frutas': frutasGrid.innerHTML += cardHtml; break;
                     case 'extras':
-                    case 'suplementos':
-                        extrasGrid.innerHTML += cardHtml;
-                        break;
+                    case 'suplementos': extrasGrid.innerHTML += cardHtml; break;
                 }
             });
+            // Após carregar, adiciona os listeners para limitar a seleção
             adicionarListenersAosCheckbox();
-
         } catch (error) {
-            console.error("Erro ao carregar ingredientes:", error);
+            console.error("Erro ao carregar ingredientes do mix:", error);
+            if (basesGrid) basesGrid.innerHTML = '<p style="color: red;">Erro ao carregar ingredientes.</p>';
         }
     }
 
-    // --- Funções do Carrinho e Resumo ---
+    // A função para mostrar o resumo continua a mesma
     function mostrarResumo() {
         const checkboxes = document.querySelectorAll('.ingrediente:checked');
         const ingredientesSelecionados = Array.from(checkboxes).map(cb => ({ name: cb.value, price: parseFloat(cb.dataset.price) }));
@@ -80,7 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('resumo').scrollIntoView({ behavior: 'smooth' });
     }
 
-    async function adicionarAoCarrinho() {
+    // *** AQUI ESTÁ A CORREÇÃO PRINCIPAL ***
+    // Esta função agora chama a API para SALVAR o mix e depois chama a função GLOBAL para ADICIONAR ao carrinho.
+    async function salvarEMostrarMixNoCarrinho() {
         const nomeMix = document.getElementById('nomeMix').value || "Meu Mix Personalizado";
         const checkboxes = document.querySelectorAll('.ingrediente:checked');
         const ingredientesNomes = Array.from(checkboxes).map(cb => cb.value);
@@ -98,51 +102,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(mixData),
             });
+            
             const result = await response.json();
+            
             if (response.ok) {
-                const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-                carrinho.push({ id: `mix_${result.mixId}`, nome: result.nome, preco: result.preco, tipo: 'Mix Personalizado' });
-                localStorage.setItem('carrinho', JSON.stringify(carrinho));
-                alert(`Seu mix "${result.nome}" foi criado e adicionado ao carrinho!`);
-                window.location.href = 'index.html';
+                // 1. Monta o objeto do mix com os dados retornados pela API
+                const mixParaAdicionar = {
+                    id: `mix_${result.mixId}`,
+                    nome: result.nome,
+                    preco: result.preco
+                };
+                
+                // 2. Chama a função GLOBAL do carrinho.js para adicionar o mix
+                // A função já contém o alert, não precisamos de outro aqui.
+                adicionarItemAoCarrinho(mixParaAdicionar);
             } else {
-                alert(`Ocorreu um erro: ${result.message}`);
+                alert(`Ocorreu um erro ao salvar o mix: ${result.message}`);
             }
         } catch (error) {
             console.error('Erro de conexão ao salvar o mix:', error);
-            alert('Não foi possível conectar ao servidor.');
+            alert('Não foi possível conectar ao servidor para salvar seu mix.');
         }
     }
 
-    function getMaxSelections(category) {
-        if (category.includes('base')) return 2;
-        if (category.includes('Castanhas')) return 3;
-        if (category.includes('Frutas')) return 2;
-        return 100;
-    }
-
+    // Função para validar a quantidade máxima de seleções
     function adicionarListenersAosCheckbox() {
+        function getMaxSelections(category) {
+            if (category.includes('base')) return 2;
+            if (category.includes('Castanhas')) return 3;
+            if (category.includes('Frutas')) return 2;
+            return 100; // Para "Extras", sem limite prático
+        }
+
         document.querySelectorAll('.ingrediente').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 const sectionTitle = this.closest('.section').querySelector('h2').textContent;
                 const maxSelections = getMaxSelections(sectionTitle);
                 const checkedInCategory = this.closest('.section').querySelectorAll('.ingrediente:checked').length;
+
                 if (checkedInCategory > maxSelections) {
                     this.checked = false;
-                    alert(`Você pode selecionar no máximo ${maxSelections} itens na categoria "${sectionTitle.split('(')[0].trim()}".`);
+                    alert(`Você pode selecionar no máximo ${maxSelections} itens para a categoria "${sectionTitle.split('(')[0].trim()}".`);
                 }
             });
         });
     }
 
-    // Adiciona os listeners aos botões usando seus IDs
-    document.getElementById('visualizar-resumo-btn').addEventListener('click', mostrarResumo);
-    document.getElementById('adicionar-carrinho-btn').addEventListener('click', adicionarAoCarrinho);
-    document.getElementById('imprimir-btn').addEventListener('click', () => window.print());
-    document.getElementById('compartilhar-btn').addEventListener('click', () => {
-        alert('Funcionalidade de compartilhar ainda não implementada.');
-    });
-
-    // --- PONTO DE PARTIDA ---
+    // Adiciona os listeners aos botões da página
+    if (visualizarResumoBtn) {
+        visualizarResumoBtn.addEventListener('click', mostrarResumo);
+    }
+    if (adicionarCarrinhoMixBtn) {
+        adicionarCarrinhoMixBtn.addEventListener('click', salvarEMostrarMixNoCarrinho);
+    }
+    
+    // --- Ponto de Partida ---
+    // Chama a função para carregar os ingredientes assim que a página estiver pronta.
     carregarIngredientes();
 });

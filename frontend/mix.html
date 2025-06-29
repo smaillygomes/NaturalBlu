@@ -7,7 +7,11 @@
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   
-  <link rel="stylesheet" href="/css/mixpage.css">  <link rel="stylesheet" href="/css/footer.css">   </head>
+  <link rel="stylesheet" href="css/mixpage.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="/css/carrinho.css"> <link rel="stylesheet" href="/css/mixpage.css">
+
+</head>
 <body>
 
   <header>
@@ -51,6 +55,20 @@
     </nav>
   </header>
 
+  <div id="cart-dropdown" class="cart-dropdown-container">
+      <h3>Meu Carrinho</h3>
+      <div id="cart-items-list">
+          <p class="cart-empty-message">Seu carrinho está vazio.</p>
+      </div>
+      <div class="cart-summary">
+          <div class="cart-total">
+              <strong>Total:</strong>
+              <span id="cart-total-price">R$ 0,00</span>
+          </div>
+          <a href="#" class="btn btn-checkout">Finalizar Compra</a>
+      </div>
+  </div>
+
   <header class="mix-header">
     <div class="header-content">
       <div class="header-badge">
@@ -87,6 +105,7 @@
       <div class="container"><div class="footer-content"><div class="footer-column"><h3>NaturalBlu</h3><p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><div class="footer-column"><h3>Institucional</h3><ul><li><a href="#">Sobre Nós</a></li><li><a href="#">Nossos Valores</a></li><li><a href="#">Blog</a></li></ul></div><div class="footer-column"><h3>Ajuda</h3><ul><li><a href="#">Perguntas Frequentes</a></li><li><a href="#">Entregas</a></li><li><a href="#">Fale Conosco</a></li></ul></div><div class="footer-column"><h3>Minha Conta</h3><ul><li><a href="#">Minha Conta</a></li><li><a href="#">Meus Pedidos</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2025 NaturalBlu - Todos os direitos reservados.</p></div></div>
   </footer>
 
+  <script src="/js/carrinho.js"></script>
   <script src="/js/mixpage.js"></script>
 </body>
 </html>

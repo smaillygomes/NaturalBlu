@@ -1,0 +1,194 @@
+.cart-count-badge {
+    position: absolute;
+    top: -8px;
+    right: -15px; /* Ajuste para não sobrepor o ícone */
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border: 2px solid var(--white);
+}
+
+/* Contêiner principal do painel do carrinho (dropdown) */
+.cart-dropdown-container {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 80px; /* Posição abaixo do cabeçalho principal */
+    right: 5%; /* Alinhado à direita da página */
+    width: 350px;
+    max-width: 90%;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 101; /* Garante que fique acima dos outros elementos */
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+/* Classe que vamos adicionar/remover com JavaScript para mostrar/esconder o carrinho */
+.cart-dropdown-container.show {
+    display: block;
+}
+
+.cart-dropdown-container h3 {
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 1.1rem;
+    background-color: var(--gray);
+    border-bottom: 1px solid #ddd;
+}
+
+/* Lista onde os itens do carrinho aparecerão */
+#cart-items-list {
+    padding: 10px 0;
+    max-height: 300px; /* Altura máxima antes de criar uma barra de rolagem */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+}
+
+/* Mensagem de carrinho vazio */
+.cart-empty-message {
+    padding: 40px 20px;
+    text-align: center;
+    color: #888;
+}
+
+/* Estilo para cada item individual no carrinho */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item-info .item-name {
+    font-weight: 600;
+    display: block;
+}
+
+.cart-item-info .item-price {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+.cart-item .remove-item-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+.cart-item .remove-item-btn:hover {
+    color: red;
+}
+
+
+/* Rodapé do carrinho com o total e o botão de finalizar */
+.cart-summary {
+    padding: 15px 20px;
+    background-color: var(--gray);
+    border-top: 1px solid #ddd;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.cart-total span {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.btn-checkout {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-checkout:hover {
+    background-color: var(--dark-color);
+    color: var(--white);
+}
+
+/* Estilo padrão do ícone do carrinho */
+.cart-link {
+    position: relative;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover no ícone do carrinho */
+.cart-link:hover {
+    color: var(--primary-color); /* Substitua pela cor desejada */
+    transform: scale(1.1); /* Aumenta o tamanho do ícone */
+}
+
+/* Estilo do contador do carrinho */
+.cart-count-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--secondary-color); /* Substitua pela cor desejada */
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Efeito de hover no contador */
+.cart-link:hover .cart-count-badge {
+    background-color: var(--primary-color); /* Substitua pela cor desejada */
+}
+
+/* Estilo padrão do ícone do carrinho */
+#cart-icon {
+    position: relative;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover no ícone do carrinho */
+#cart-icon:hover {
+    color: var(--primary-color); /* Substitua pela cor desejada */
+    transform: scale(1.1); /* Aumenta o tamanho do ícone */
+}
+
+/* Estilo do contador do carrinho */
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--secondary-color); /* Substitua pela cor desejada */
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Efeito de hover no contador */
+#cart-icon:hover #cart-count {
+    background-color: var(--primary-color); /* Substitua pela cor desejada */
+}
+
+.user-actions a:hover i {
+    transform: scale(1.15); /* Efeito de zoom sutil */
+    color: var(--primary-color);
+}
