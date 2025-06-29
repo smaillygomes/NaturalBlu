@@ -1,21 +1,25 @@
-:root {
-  /* Paleta do Mix */
-  --primary-color: #4a8f29;
-  --primary-light: #293524;
-  --secondary-color: #f8a729;
-  --light-bg: #f9f9f7;
-  --card-shadow: 0 6px 15px rgba(0,0,0,0.08);
+/* ========================================================== */
+/* ARQUIVO mixpage.css UNIFICADO (PARTE 1/3)         */
+/* ========================================================== */
 
-  /* Paleta header global */
+/* --- ESTILOS GLOBAIS E DO CABEÇALHO (do header.css) --- */
+:root {
+  --primary-color: #4CAF50;
+  --secondary-color: #9caf86;
   --accent-color: #FFC107;
   --dark-color: #7f9481;
   --light-color: #F1F8E9;
   --text-color: #333;
   --white: #fff;
   --gray: #f5f5f5;
+  
+  /* Variáveis específicas do Mix, para não haver conflito */
+  --mix-primary-color: #4a8f29;
+  --mix-secondary-color: #f8a729;
+  --mix-light-bg: #f9f9f7;
+  --mix-card-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
-/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -24,171 +28,82 @@
 }
 
 body {
-  background-color: var(--light-bg);
+  background-color: var(--mix-light-bg); /* Fundo específico para a página de mix */
   color: var(--text-color);
   line-height: 1.6;
 }
 
-/* ----------------- CABEÇALHO GLOBAL ----------------- */
-.global-header {
-  background-color: var(--white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  top: 0;
-  z-index: 100;
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.global-header .top-bar {
+/* Estilos do Cabeçalho Global */
+header {
+  background-color: var(--white);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar {
   background-color: var(--dark-color);
   color: var(--white);
   padding: 10px 0;
   font-size: 0.9rem;
 }
 
-.global-header .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.global-header .top-bar .container {
+.top-bar .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.global-header .auth-buttons a {
+.main-header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-buttons a {
   color: var(--white);
   text-decoration: none;
   margin-left: 15px;
   transition: opacity 0.3s;
-  font-size: 0.9rem;
 }
+.auth-buttons a:hover { opacity: 0.8; }
 
-.global-header .auth-buttons a:hover {
-  opacity: 0.8;
-}
+.main-header { padding: 20px 0; }
+.logo { display: flex; align-items: center; }
+.logo img { height: 50px; margin-right: 10px; }
+.logo h1 { color: var(--primary-color); font-size: 1.8rem; font-weight: 700; }
+.logo span { color: var(--dark-color); font-weight: 300; }
 
-.global-header .main-header {
-  padding: 20px 0;
-}
-
-.global-header .header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.global-header .logo {
-  display: flex;
-  align-items: center;
-}
-
-.global-header .logo img {
-  height: 50px;
-  margin-right: 10px;
-}
-
-.global-header .logo h1 {
-  color: var(--primary-color);
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.global-header .logo span {
-  color: var(--dark-color);
-  font-weight: 300;
-}
-
-.global-header .user-actions {
-  display: flex;
-  align-items: center;
-}
-
-.global-header .user-actions a {
-  margin-left: 20px;
-  color: var(--text-color);
-  text-decoration: none;
-  position: relative;
-  font-size: 1.2rem;
-}
-
-.global-header .user-actions a span {
-  position: absolute;
-  top: -8px;
-  right: -8px;
+.user-actions { display: flex; align-items: center; }
+.user-actions a { margin-left: 20px; color: var(--text-color); text-decoration: none; position: relative; font-size: 1.2rem; }
+.user-actions a i { transition: transform 0.3s ease, color 0.3s ease; }
+.user-actions a:hover i { transform: scale(1.15); color: var(--primary-color); }
+.user-actions a .cart-count-badge {
+  position: absolute; top: -8px; right: -8px;
   background-color: var(--accent-color);
   color: var(--text-color);
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: bold;
+  border-radius: 50%; width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: bold;
 }
 
-.global-header nav {
-  background-color: #4CAF50;
-}
+nav { background-color: var(--primary-color); }
+.nav-menu { display: flex; list-style: none; }
+.nav-menu a { color: var(--white); text-decoration: none; padding: 15px 20px; display: block; transition: background-color 0.3s; }
+.nav-menu a:hover { background-color: var(--dark-color); }
 
-.global-header .nav-menu {
-  display: flex;
-  list-style: none;
-}
+/* ========================================================== */
+/* ARQUIVO mixpage.css UNIFICADO (PARTE 2/3)         */
+/* ========================================================== */
 
-.global-header .nav-menu li {
-  position: relative;
-}
+/* --- ESTILOS DA PÁGINA DE MIX (específicos e contidos) --- */
 
-.global-header .nav-menu li:hover .submenu {
-  display: block;
-}
-
-.global-header .nav-menu a {
-  color: var(--white);
-  text-decoration: none;
-  padding: 15px 20px;
-  display: block;
-  transition: background-color 0.3s;
-  font-size: 1rem;
-}
-
-.global-header .nav-menu a:hover {
-  background-color: var(--dark-color);
-}
-
-.global-header .submenu {
-  display: none;
-  position: absolute;
-  background-color: var(--white);
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-  list-style: none;
-}
-
-.global-header .submenu a {
-  color: var(--text-color);
-  padding: 12px 16px;
-}
-
-.global-header .submenu a:hover {
-  background-color: var(--gray);
-}
-
-.global-header .user-actions a i {
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.global-header .user-actions a:hover i {
-  transform: scale(1.15);
-  color: var(--primary-color);
-}
-
-/* ----------------- CABEÇALHO DO MIX ----------------- */
+/* Cabeçalho específico do Mix */
 .mix-header {
-  position: relative;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
               url('https://i.ytimg.com/vi/HQtJyJxlOLE/sddefault.jpg');
   background-size: cover;
@@ -196,10 +111,10 @@ body {
   color: white;
   padding: 80px 0 60px;
   text-align: center;
+  position: relative;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-
 .mix-header::before {
   content: "";
   position: absolute;
@@ -210,7 +125,6 @@ body {
   background: linear-gradient(135deg, rgba(74, 143, 41, 0.7), rgba(41, 53, 36, 0.8));
   z-index: 1;
 }
-
 .mix-header .header-content {
   position: relative;
   z-index: 2;
@@ -218,76 +132,240 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
-
-.mix-header h1 {
-  margin: 0;
-  font-size: 3rem;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-  animation: fadeInDown 0.8s ease;
-}
-
-.subtitle {
-  font-size: 1.3rem;
-  color: #fff;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  animation: fadeIn 1s ease 0.3s both;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5;
-}
-
 .mix-header .header-badge {
   display: inline-block;
-  background-color: var(--secondary-color);
-  color: #fff;
-  padding: 10px 25px;
-  border-radius: 50px;
-  font-weight: 600;
+  background-color: var(--mix-secondary-color);
+  color: #fff; 
+  padding: 10px 25px; 
+  border-radius: 50px; 
+  font-weight: 600; 
   margin-bottom: 20px;
-  box-shadow: 0 4px 15px rgba(248, 167, 41, 0.3);
-  animation: fadeIn 0.8s ease;
 }
-
-.mix-header .header-icons {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
-  animation: fadeInUp 0.8s ease 0.5s both;
+.mix-header h1 { 
+  font-size: 3rem; 
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+  margin-top: 0;
+  margin-bottom: 15px;
 }
-
-.mix-header .icon-item {
-  text-align: center;
-  max-width: 120px;
+.mix-header .subtitle { 
+  font-size: 1.3rem; 
+  max-width: 700px; 
+  margin: 15px auto 30px; 
+  line-height: 1.5;
 }
-
-.mix-header .icon-circle {
+.mix-header .header-icons { 
+  display: flex; 
+  justify-content: center; 
+  gap: 30px; 
+  margin-top: 40px; 
+}
+.mix-header .icon-circle { 
+  color: var(--mix-secondary-color);
   background: rgba(255, 255, 255, 0.15);
-  width: 70px;
-  height: 70px;
+  width: 70px; height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 10px;
   font-size: 1.8rem;
-  color: var(--secondary-color);
-  backdrop-filter: blur(5px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
 }
-
 .mix-header .icon-text {
   font-size: 0.9rem;
-  opacity: 0.9;
 }
 
-/* ----------------- ANIMAÇÕES ----------------- */
+/* Conteúdo do Mix Builder */
+.mix-builder {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--mix-card-shadow);
+  padding: 30px 40px;
+  margin: 40px auto;
+  max-width: 900px;
+}
+.mix-builder .section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.mix-builder .section:last-child {
+  border-bottom: none;
+}
+
+/* Regras de estilo contidas para não afetarem o rodapé */
+.mix-builder h2 {
+  color: var(--mix-primary-color); 
+  font-size: 1.5rem; 
+  position: relative; 
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+.mix-builder h2:before {
+  content: ""; 
+  position: absolute; 
+  left: 0; 
+  top: 5px; 
+  height: 20px; 
+  width: 5px;
+  background: var(--mix-secondary-color); 
+  border-radius: 3px;
+}
+.mix-builder .ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.mix-builder .ingredient-option {
+  background: #f8f8f8;
+  border-radius: 10px;
+  padding: 0;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  position: relative;
+}
+.mix-builder .ingredient-option:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.mix-builder .ingredient-option label { display: block; cursor: pointer; }
+.mix-builder .ingredient-img { width: 100%; height: 150px; object-fit: cover; border-bottom: 1px solid #eee; }
+.mix-builder .ingredient-info { padding: 15px; }
+.mix-builder .ingredient-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; color: #333; }
+.mix-builder .ingredient-meta { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; color: #666; }
+.mix-builder .ingredient-weight { background: var(--mix-primary-color); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; }
+.mix-builder .ingredient-price { color: var(--mix-primary-color); font-size: 1rem; font-weight: 600; margin-top: 5px; }
+.mix-builder .ingredient-option input[type="checkbox"] {
+  position: absolute; top: 10px; right: 10px; width: 20px; height: 20px;
+  appearance: none; background: white; border: 2px solid #ccc;
+  border-radius: 4px; cursor: pointer; transition: all 0.2s;
+}
+.mix-builder .ingredient-option input[type="checkbox"]:checked { background: var(--mix-primary-color); border-color: var(--mix-primary-color); }
+.mix-builder .ingredient-option input[type="checkbox"]:checked:after {
+  content: "✓"; color: white; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%); font-size: 12px; font-weight: bold;
+}
+.mix-builder #nomeMix {
+  width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;
+  font-size: 1rem; margin-top: 10px; transition: border 0.3s;
+}
+.mix-builder #nomeMix:focus {
+  border-color: var(--mix-primary-color); outline: none; box-shadow: 0 0 0 2px rgba(74, 143, 41, 0.2);
+}
+
+/* ========================================================== */
+/* ARQUIVO mixpage.css UNIFICADO (PARTE 3/3)         */
+/* ========================================================== */
+
+/* Estilos de botão apenas para o .mix-builder */
+.mix-builder button {
+  background-color: var(--mix-primary-color);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto; /* Garante que não ocupe a largura toda por padrão */
+}
+.mix-builder button:hover {
+  background-color: #3a7320;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.mix-builder .btn-secondary { background: #6c757d; }
+.mix-builder .btn-secondary:hover { background: #5a6268; }
+
+/* Estilos da área de resumo */
+.mix-builder #resumo {
+  background: #f5f5f5;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 30px;
+  border: 1px solid #e0e0e0;
+}
+.mix-builder .price-total {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--mix-primary-color);
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed #ccc;
+}
+.mix-builder .action-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+.mix-builder .mix-name {
+  font-size: 1.2rem;
+  color: var(--mix-primary-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(74, 143, 41, 0.1);
+  border-radius: 6px;
+}
+.mix-builder #ingredientesSelecionados {
+  columns: 2;
+  column-gap: 30px;
+  padding-left: 20px;
+  list-style-position: inside;
+}
+.mix-builder #ingredientesSelecionados li {
+  margin-bottom: 8px;
+  break-inside: avoid;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  margin-right: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Animações */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .mix-builder .ingredients-grid { grid-template-columns: 1fr; }
+  .mix-builder #ingredientesSelecionados { columns: 1; }
+  .mix-builder .action-buttons { flex-direction: column; }
+  .mix-builder button { width: 100%; justify-content: center; }
+  .mix-header h1 { font-size: 2.2rem; }
+  .mix-header .subtitle { font-size: 1.1rem; }
+  .mix-header .header-icons { flex-wrap: wrap; gap: 15px; }
+}
+
+/* ========================================================== */
+/* TRECHO PARA RESTAURAR AS ANIMAÇÕES               */
+/* ========================================================== */
+
+/* Adiciona a animação de "surgir" ao selo "Mix Personalizado" */
+.mix-header .header-badge {
+  animation: fadeIn 0.8s ease;
+}
+
+/* Adiciona a animação de "descer surgindo" ao título principal */
+.mix-header h1 {
+  animation: fadeInDown 0.8s ease;
+}
+
+/* Adiciona a animação de "surgir" ao subtítulo */
+.mix-header .subtitle {
+  animation: fadeIn 1s ease 0.3s both;
+}
+
+/* Adiciona a animação de "subir surgindo" aos ícones */
+.mix-header .header-icons {
+  animation: fadeInUp 0.8s ease 0.5s both;
+}
+
+/* As definições de animação (provavelmente já estão no seu CSS, mas para garantir) */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -301,297 +379,4 @@ body {
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* ----------------- MIX BUILDER ----------------- */
-.mix-builder {
-  background: white;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
-  padding: 30px;
-  margin: 40px auto;
-  max-width: 900px;
-}
-
-.section {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
-
-h2 {
-  color: var(--primary-color);
-  margin-top: 0;
-  font-size: 1.5rem;
-  position: relative;
-  padding-left: 15px;
-}
-
-h2:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 5px;
-  height: 20px;
-  width: 5px;
-  background: var(--secondary-color);
-  border-radius: 3px;
-}
-
-.ingredients-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.ingredient-option {
-  background: #f8f8f8;
-  border-radius: 10px;
-  padding: 0;
-  transition: all 0.3s ease;
-  border: 1px solid #e0e0e0;
-  overflow: hidden;
-  position: relative;
-}
-
-.ingredient-option:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.ingredient-option label {
-  display: block;
-  cursor: pointer;
-}
-
-.ingredient-img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-bottom: 1px solid #eee;
-}
-
-.ingredient-info {
-  padding: 15px;
-}
-
-.ingredient-name {
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.ingredient-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 0.85rem;
-  color: #666;
-}
-
-.ingredient-weight {
-  background: var(--primary-color);
-  color: white;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.75rem;
-}
-
-.ingredient-price {
-  color: var(--primary-color);
-  font-size: 1rem;
-  font-weight: 600;
-  margin-top: 5px;
-}
-
-.ingredient-option input[type="checkbox"] {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  appearance: none;
-  background: white;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.ingredient-option input[type="checkbox"]:checked {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.ingredient-option input[type="checkbox"]:checked:after {
-  content: "✓";
-  color: white;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  font-weight: bold;
-}
-
-#nomeMix {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-top: 10px;
-  transition: border 0.3s;
-}
-
-#nomeMix:focus {
-  border-color: var(--primary-color);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(74, 143, 41, 0.2);
-}
-
-button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-weight: 600;
-  margin-top: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-button:hover {
-  background-color: #3a7320;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-#resumo {
-  background: #f5f5f5;
-  padding: 25px;
-  border-radius: 10px;
-  margin-top: 30px;
-  display: none;
-  border: 1px solid #e0e0e0;
-  animation: fadeIn 0.5s ease;
-}
-
-.price-total {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px dashed #ccc;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-.btn-secondary {
-  background: #6c757d;
-}
-
-.btn-secondary:hover {
-  background: #5a6268;
-}
-
-.mix-name {
-  font-size: 1.2rem;
-  color: var(--primary-color);
-  font-weight: 600;
-  margin-bottom: 20px;
-  padding: 10px;
-  background: rgba(74, 143, 41, 0.1);
-  border-radius: 6px;
-}
-
-#ingredientesSelecionados {
-  columns: 2;
-  column-gap: 30px;
-}
-
-#ingredientesSelecionados li {
-  margin-bottom: 8px;
-  break-inside: avoid;
-  padding: 8px 12px;
-  background: white;
-  border-radius: 6px;
-  margin-right: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-/* BADGES */
-.badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-left: 8px;
-}
-
-.badge-base {
-  background: #e3f2fd;
-  color: #1976d2;
-}
-
-.badge-nuts {
-  background: #fff8e1;
-  color: #ff8f00;
-}
-
-.badge-fruits {
-  background: #f3e5f5;
-  color: #8e24aa;
-}
-
-.badge-extra {
-  background: #e8f5e9;
-  color: #43a047;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-  .ingredients-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-
-  #ingredientesSelecionados {
-    columns: 1;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-  }
-
-  button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .mix-header h1 {
-    font-size: 2.2rem;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-  }
-
-  .mix-header .header-icons {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
 }

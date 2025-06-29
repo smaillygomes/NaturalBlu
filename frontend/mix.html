@@ -6,29 +6,27 @@
   <title>Monte Seu Mix de Premium</title>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/mixpage.css">
-</head>
+  
+  <link rel="stylesheet" href="/css/mixpage.css">  <link rel="stylesheet" href="/css/footer.css">   </head>
 <body>
 
-  <!-- Cabeçalho principal da loja (agora parte integrante do mix.html) -->
-  <header class="global-header">
+  <header>
     <div class="top-bar">
       <div class="container">
         <div class="contact-info">
           <span><i class="fas fa-phone"></i> Bem-vindo à sua loja de produtos naturais!</span>
         </div>
         <div class="auth-buttons">
-          <a href="cadastro.html"><i class="fas fa-user"></i>Login</a>
-          <a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastre-se</a>
+          <a href="/cadastro.html"><i class="fas fa-user"></i>Login</a>
+          <a href="/cadastro.html"><i class="fas fa-user-plus"></i> Cadastre-se</a>
         </div>
       </div>
     </div>
-
     <div class="main-header">
       <div class="container">
         <div class="header-content">
           <div class="logo">
-            <img src="assets/images/logo.png" alt="Natureza Viva">
+            <img src="/assets/images/logo.png" alt="Natureza Viva">
             <h1>Natural<span>Blu</span></h1>
           </div>
           <div class="user-actions">
@@ -41,12 +39,11 @@
         </div>
       </div>
     </div>
-
     <nav>
       <div class="container">
         <ul class="nav-menu">
-          <li><a href="#" id="show-all-products">Home</a></li>
-          <li><a href="mix.html">Produtos Personalizados</a></li>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/mix.html">Produtos Personalizados</a></li>
           <li><a href="#">Sobre Nós</a></li>
           <li><a href="#">Contato</a></li>
         </ul>
@@ -54,7 +51,6 @@
     </nav>
   </header>
 
-  <!-- Cabeçalho específico da página Mix -->
   <header class="mix-header">
     <div class="header-content">
       <div class="header-badge">
@@ -62,7 +58,6 @@
       </div>
       <h1>Monte Seu Mix de Granola Premium</h1>
       <p class="subtitle">Crie sua combinação perfeita com ingredientes selecionados da mais alta qualidade para uma alimentação saudável e saborosa</p>
-
       <div class="header-icons">
         <div class="icon-item"><div class="icon-circle"><i class="fas fa-leaf"></i></div><div class="icon-text">100% Natural</div></div>
         <div class="icon-item"><div class="icon-circle"><i class="fas fa-heart"></i></div><div class="icon-text">Saudável</div></div>
@@ -74,73 +69,24 @@
 
   <div class="container">
     <div class="mix-builder">
-      <div class="section">
-        <h2>1. Escolha sua base (Selecione até 2)</h2>
-        <div class="ingredients-grid" id="base-grid">
-          <p>Carregando...</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>2. Castanhas Premium (Selecione até 3)</h2>
-        <div class="ingredients-grid" id="castanhas-grid">
-          <p>Carregando...</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>3. Frutas Secas Selecionadas (Selecione até 2)</h2>
-        <div class="ingredients-grid" id="frutas-grid">
-          <p>Carregando...</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>4. Extras Especiais Gourmet</h2>
-        <div class="ingredients-grid" id="extras-grid">
-          <p>Carregando...</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>5. Dê um nome ao seu mix exclusivo</h2>
-        <input type="text" id="nomeMix" placeholder="Ex: Mix Energético da Manhã, Granola Power...">
-        <p><small>Escolha um nome criativo para sua combinação única!</small></p>
-      </div>
-
-      <button id="visualizar-resumo-btn">
-        <i class="fas fa-eye"></i> CLIQUE AQUI e Visualize seu Meu Mix Personalizado
-      </button>
-
-      <div id="resumo" style="display: none;">
-        <h2>Seu Mix Exclusivo</h2>
-        <div class="mix-name">
-          <i class="fas fa-star"></i> 
-          <span id="nomeSelecionado">Meu Mix Personalizado</span>
-        </div>
-
-        <p><strong>Ingredientes Selecionados:</strong></p>
-        <ul id="ingredientesSelecionados"></ul>
-
-        <div class="price-total">
-          <i class="fas fa-tag"></i> Preço Total: <span id="precoTotal">R$ 0,00</span>
-        </div>
-
-        <div class="action-buttons">
-          <button id="adicionar-carrinho-btn">
-            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
-          </button>
-          <button id="compartilhar-btn" class="btn-secondary">
-            <i class="fas fa-share-alt"></i> Compartilhar
-          </button>
-          <button id="imprimir-btn" style="background: #17a2b8;">
-            <i class="fas fa-print"></i> Imprimir
-          </button>
-        </div>
-      </div>
+        <div class="section"><h2>1. Escolha sua base (Selecione até 2)</h2><div class="ingredients-grid" id="base-grid"><p>Carregando...</p></div></div>
+        <div class="section"><h2>2. Castanhas Premium (Selecione até 3)</h2><div class="ingredients-grid" id="castanhas-grid"><p>Carregando...</p></div></div>
+        <div class="section"><h2>3. Frutas Secas Selecionadas (Selecione até 2)</h2><div class="ingredients-grid" id="frutas-grid"><p>Carregando...</p></div></div>
+        <div class="section"><h2>4. Extras Especiais Gourmet</h2><div class="ingredients-grid" id="extras-grid"><p>Carregando...</p></div></div>
+        <div class="section"><h2>5. Dê um nome ao seu mix exclusivo</h2><input type="text" id="nomeMix" placeholder="Ex: Mix Energético da Manhã, Granola Power..."><p><small>Escolha um nome criativo para sua combinação única!</small></p></div>
+        <button id="visualizar-resumo-btn"><i class="fas fa-eye"></i> CLIQUE AQUI e Visualize seu Meu Mix Personalizado</button>
+        <div id="resumo" style="display: none;"><h2>Seu Mix Exclusivo</h2><div class="mix-name"><i class="fas fa-star"></i><span id="nomeSelecionado">Meu Mix Personalizado</span></div><p><strong>Ingredientes Selecionados:</strong></p><ul id="ingredientesSelecionados"></ul><div class="price-total"><i class="fas fa-tag"></i> Preço Total: <span id="precoTotal">R$ 0,00</span></div><div class="action-buttons"><button id="adicionar-carrinho-btn"><i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho</button><button id="compartilhar-btn" class="btn-secondary"><i class="fas fa-share-alt"></i> Compartilhar</button><button id="imprimir-btn" style="background: #17a2b8;"><i class="fas fa-print"></i> Imprimir</button></div></div>
     </div>
   </div>
 
-  <script src="js/mixpage.js"></script>
+  <main>
+    <section class="custom-products"><div class="container"><div class="section-title"><h2>Produtos Personalizados</h2></div><div class="custom-options"><div class="custom-option"><i class="fas fa-box-open"></i><h3>Kits Personalizados</h3><p>Monte seu próprio kit com os produtos que você mais gosta e receba em casa.</p><a href="#" class="btn">Montar Kit</a></div><div class="custom-option"><i class="fas fa-heart"></i><h3>Assinatura Mensal</h3><p>Receba mensalmente uma caixa surpresa com produtos selecionados.</p><a href="#" class="btn">Assinar</a></div><div class="custom-option"><i class="fas fa-gift"></i><h3>Presentes Naturais</h3><p>Presenteie quem você ama com nossos kits especiais para diversas ocasiões.</p><a href="#" class="btn">Ver Opções</a></div></div></div></section>
+    <section class="newsletter"><div class="container"><h2>Assine Nossa Newsletter</h2><p>Receba novidades, promoções exclusivas e dicas de vida saudável diretamente no seu e-mail.</p><form class="newsletter-form"><input type="email" placeholder="Seu melhor e-mail"><button type="submit">Assinar</button></form></div></section>
+  </main>
+  <footer>
+      <div class="container"><div class="footer-content"><div class="footer-column"><h3>NaturalBlu</h3><p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><div class="footer-column"><h3>Institucional</h3><ul><li><a href="#">Sobre Nós</a></li><li><a href="#">Nossos Valores</a></li><li><a href="#">Blog</a></li></ul></div><div class="footer-column"><h3>Ajuda</h3><ul><li><a href="#">Perguntas Frequentes</a></li><li><a href="#">Entregas</a></li><li><a href="#">Fale Conosco</a></li></ul></div><div class="footer-column"><h3>Minha Conta</h3><ul><li><a href="#">Minha Conta</a></li><li><a href="#">Meus Pedidos</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2025 NaturalBlu - Todos os direitos reservados.</p></div></div>
+  </footer>
+
+  <script src="/js/mixpage.js"></script>
 </body>
 </html>
