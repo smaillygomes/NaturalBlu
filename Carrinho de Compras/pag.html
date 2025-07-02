@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras | NaturalBlu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos baseados no site principal - ajuste conforme necessário */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .top-bar {
+            background-color: #56af2d;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        
+        .top-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        .main-header {
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4a8f29;
+        }
+        
+        .logo h1 span {
+            color: #356622;
+        }
+        
+        nav {
+            background-color: #4CAF50; /* Substitua pela cor exata da barra */
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu li a:hover {
+            background-color: #469123;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #63db33;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .submenu li a {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .nav-menu li:hover .submenu {
+            display: block;
+        }
+        
+        /* Página do Carrinho */
+        .cart-page {
+            padding: 40px 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-title {
+            font-size: 28px;
+            color: #2c5a1a;
+            font-weight: 700;
+        }
+        
+        .cart-steps {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .cart-step {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-step.active {
+            color: #4a8f29;
+            font-weight: 600;
+        }
+        
+        .cart-step-number {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #eee;
+            color: #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-size: 12px;
+        }
+        
+        .cart-step.active .cart-step-number {
+            background-color: #4a8f29;
+            color: white;
+        }
+        
+        .cart-step-separator {
+            margin: 0 10px;
+            color: #ddd;
+        }
+        
+        .cart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .cart-items {
+            flex: 2;
+            min-width: 300px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+        }
+        
+        .cart-summary {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 20px 0; /* Aumenta o espaçamento interno */
+            border-bottom: 1px solid #eee;
+            font-size: 18px; /* Aumenta o tamanho da fonte */
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 150px; /* Aumenta a largura da imagem */
+            height: 150px; /* Aumenta a altura da imagem */
+            margin-right: 30px; /* Aumenta o espaçamento entre imagem e detalhes */
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 20px; /* Aumenta o tamanho do título */
+            font-weight: 700; /* Torna o título mais destacado */
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-category {
+            font-size: 16px; /* Aumenta o tamanho da categoria */
+            color: #4a8f29;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-price {
+            font-size: 18px; /* Aumenta o tamanho do preço */
+            font-weight: 700;
+            color: #2c5a1a;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .quantity-selector button {
+            background: #f0f7ed;
+            border: 1px solid #ddd;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .quantity-selector input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+        }
+        
+        .remove-item {
+            color: #e74c3c;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .remove-item i {
+            margin-right: 5px;
+        }
+        
+        .cart-summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c5a1a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-label {
+            color: #555;
+        }
+        
+        .summary-value {
+            font-weight: 600;
+        }
+        
+        .summary-total {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c5a1a;
+            margin: 20px 0;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .coupon-form {
+            display: flex;
+            margin: 20px 0;
+        }
+        
+        .coupon-form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        
+        .coupon-form button {
+            padding: 10px 15px;
+            background-color: #4a8f29;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #4a8f29;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #a8d5a8;
+        }
+        
+        .btn-outline {
+            background-color: #fff;
+            border: 2px solid #4a8f29;
+            color: #4a8f29;
+            margin-bottom: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: #eaf5ea;
+        }
+        
+        .payment-methods {
+            margin-top: 30px;
+        }
+        
+        .payment-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c5a1a;
+            margin-bottom: 15px;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: #4a8f29;
+        }
+        
+        .payment-option.selected {
+            border-color: #4a8f29;
+            background-color: #f0f7ed;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #4a8f29;
+        }
+        
+        .payment-details {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .payment-description {
+            font-size: 12px;
+            color: #777;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .empty-cart-icon {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart-title {
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .empty-cart-message {
+            color: #777;
+            margin-bottom: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c5a1a;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #4a8f29;
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #d1e8c3;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            color: #d1e8c3;
+        }
+        
+        /* Botão WhatsApp */
+        .botao-wpp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-container {
+                flex-direction: column;
+            }
+            
+            .cart-steps {
+                display: none;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-image {
+                width: 100%;
+                height: auto;
+                margin-bottom: 15px;
+            }
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            background-color: #f0f7ed;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            border-radius: 25px 0 0 25px;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: #4a8f29;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 25px 25px 0;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #3a7320;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .user-actions a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #f0f7ed;
+            color: #4a8f29;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .user-actions a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            background-color: #4a8f29;
+            color: #fff;
+        }
+
+        .user-actions a span {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ff4d4d;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> Bem-vindo à sua loja de produtos naturais!</span>
+                </div>
+                <div class="auth-buttons">
+                    <a href=""><i class="fas fa-user"></i> Login</a>
+                    <a href="#register"><i class="fas fa-user-plus"></i> Cadastre-se</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="logofundobranco.png" alt="NaturalBlu">
+                        <h1>Natural<span>Blu</span></h1>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input type="text" placeholder="Buscar produtos...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    
+                    <div class="user-actions">
+                        <a href="#favorites"><i class="fas fa-heart"></i></a>
+                        <a href="#cart"><i class="fas fa-shopping-cart"></i></a>
+                        <a href="#account"><i class="fas fa-user-circle"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li>
+                        <a href="#categories">Categorias <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#organic">Orgânicos</a></li>
+                            <li><a href="#vegan">Veganos</a></li>
+                            <li><a href="#gluten-free">Sem Glúten</a></li>
+                            <li><a href="#suplements">Suplementos</a></li>
+                            <li><a href="#teas">Chás</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#promotions">Promoções</a></li>
+                    <li><a href="#custom">Produtos Personalizados</a></li>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="cart-page">
+        <div class="container">
+            <div class="cart-header">
+                <h1 class="cart-title">Meu Carrinho</h1>
+                <div class="cart-steps">
+                    <div class="cart-step active">
+                        <div class="cart-step-number">1</div>
+                        <span>Carrinho</span>
+                    </div>
+                    <div class="cart-step-separator"><i class="fas fa-chevron-right"></i></div>
+                    <div class="cart-step">
+                        <div class="cart-step-number">2</div>
+                        <span>Pagamento</span>
+                    </div>
+                    <div class="cart-step-separator"><i class="fas fa-chevron-right"></i></div>
+                    <div class="cart-step">
+                        <div class="cart-step-number">3</div>
+                        <span>Confirmação</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-container">
+                <div class="cart-items">
+                    <h2>Seus Produtos (3)</h2>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="//th.bing.com/th/id/OIP.wGmMl0OGYcWHR-lytZs24AHaJ4?rs=1&amp;pid=ImgDetMain" alt="Granola">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">Granola Caseira Integral</h3>
+                            <div class="cart-item-category">Cereais</div>
+                            <div class="cart-item-price">R$ 18,90</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity-selector">
+                                    <button class="qty-minus">-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button class="qty-plus">+</button>
+                                </div>
+                                <button class="remove-item">
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="https://www.saudedr.com.br/wp-content/uploads/2018/03/aveia-e-seus-beneficios.jpg" alt="Mel Orgânico">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">Aveia em Flocos</h3>
+                            <div class="cart-item-category">Aveia</div>
+                            <div class="cart-item-price">
+                                <span style="text-decoration: line-through; color: #999; margin-right: 5px;"></span>
+                                R$ 9,90
+                            </div>
+                            <div class="cart-item-actions">
+                                <div class="quantity-selector">
+                                    <button class="qty-minus">-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button class="qty-plus">+</button>
+                                </div>
+                                <button class="remove-item">
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="https://th.bing.com/th/id/OIP.ZJPnRxbnxQlYEX2R2PpvhgHaE8?rs=1&pid=ImgDetMain" alt="Farinha de Amêndoas">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">Farinha de Amêndoas</h3>
+                            <div class="cart-item-category">Farinhas</div>
+                            <div class="cart-item-price">R$ 32,90</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity-selector">
+                                    <button class="qty-minus">-</button>
+                                    <input type="number" value="1" min="1">
+                                    <button class="qty-plus">+</button>
+                                </div>
+                                <button class="remove-item">
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <h2 class="cart-summary-title">Resumo do Pedido</h2>
+                    
+                    <div class="summary-row">
+                        <span class="summary-label">Subtotal (3 itens)</span>
+                        <span class="summary-value">R$ 81,70</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span class="summary-label">Frete</span>
+                        <span class="summary-value">R$ 9,90</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span class="summary-label">Desconto</span>
+                        <span class="summary-value" style="color: #4a8f29;">- R$ 6,00</span>
+                    </div>
+                    
+                    <div class="coupon-form">
+                        <input type="text" placeholder="Cupom de desconto">
+                        <button>Aplicar</button>
+                    </div>
+                    
+                    <div class="summary-total">
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value">R$ 85,60</span>
+                    </div>
+                    
+                    <button class="btn btn-outline">Continuar Comprando</button>
+                    <button class="btn">Finalizar Compra</button>
+                    
+                    <div class="payment-methods">
+                        <h3 class="payment-title">Métodos de Pagamento</h3>
+                        
+                        <div class="payment-option selected">
+                            <div class="payment-icon">
+                                <i class="fab fa-cc-visa"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">Cartão de Crédito</div>
+                                <div class="payment-description">Pague em até 12x sem juros</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option">
+                            <div class="payment-icon">
+                                <i class="fas fa-barcode"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">Boleto Bancário</div>
+                                <div class="payment-description">5% de desconto à vista</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option">
+                            <div class="payment-icon">
+                                <i class="fab fa-pix"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">PIX</div>
+                                <div class="payment-description">7% de desconto à vista</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option">
+                            <div class="payment-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">Depósito Bancário</div>
+                                <div class="payment-description">5% de desconto à vista</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NaturalBlu</h3>
+                    <p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis.</p>
+                    <div class="social-links">
+                        <a href="#facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <ul>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#values">Nossos Valores</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#jobs">Trabalhe Conosco</a></li>
+                        <li><a href="#partners">Parceiros</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Ajuda</h3>
+                    <ul>
+                        <li><a href="#faq">Perguntas Frequentes</a></li>
+                        <li><a href="#shipping">Entregas</a></li>
+                        <li><a href="#returns">Trocas e Devoluções</a></li>
+                        <li><a href="#payments">Formas de Pagamento</a></li>
+                        <li><a href="#contact">Fale Conosco</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Minha Conta</h3>
+                    <ul>
+                        <li><a href="#login">Minha Conta</a></li>
+                        <li><a href="#orders">Meus Pedidos</a></li>
+                        <li><a href="#wishlist">Lista de Desejos</a></li>
+                        <li><a href="#addresses">Meus Endereços</a></li>
+                        <li><a href="#vouchers">Vale-Presentes</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 NaturalBlu - Todos os direitos reservados. </p>
+            </div>
+        </div>
+    </footer>
+
+    <a class="botao-wpp" href="https://wa.me/5547984692576" target="_blank"> 
+        <img src="download.png" alt="" width="60px">
+    </a>
+
+    <script>
+        // Função para atualizar o resumo do pedido
+        function updateSummary() {
+            let subtotal = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.querySelector('.cart-item-price').textContent.replace('R$', '').trim());
+                const quantity = parseInt(item.querySelector('.quantity-selector input').value);
+                subtotal += price * quantity;
+            });
+
+            const shipping = 9.90; // Valor fixo do frete
+            const discount = 6.00; // Valor fixo do desconto
+            const total = subtotal + shipping - discount;
+
+            document.querySelector('.summary-value:nth-child(2)').textContent = `R$ ${subtotal.toFixed(2)}`;
+            document.querySelector('.summary-value:nth-child(4)').textContent = `R$ ${total.toFixed(2)}`;
+        }
+
+        // Script para o seletor de quantidade
+        document.querySelectorAll('.qty-minus').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.nextElementSibling;
+                if (input.value > 1) {
+                    input.value = parseInt(input.value) - 1;
+                    updateSummary();
+                }
+            });
+        });
+
+        document.querySelectorAll('.qty-plus').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                input.value = parseInt(input.value) + 1;
+                updateSummary();
+            });
+        });
+
+        // Script para remover itens do carrinho
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.cart-item').remove();
+                updateSummary();
+            });
+        });
+
+        // Script para selecionar método de pagamento
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        // Script para aplicar cupom
+        document.querySelector('.coupon-form button').addEventListener('click', function() {
+            const coupon = this.previousElementSibling.value;
+            if (coupon) {
+                alert(`Cupom "${coupon}" aplicado com sucesso!`);
+                // Lógica para aplicar desconto aqui
+            }
+        });
+    </script>
+</body>
+</html>
