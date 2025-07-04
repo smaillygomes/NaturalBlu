@@ -243,7 +243,45 @@ app.get('/api/produtos-mix', async (req, res) => {
     }
 });
 
-// 9. Iniciar o Servidor
+// ==========================================================
+// 9. Rota para Buscar um Produto por ID (`/api/produtos/:id`)
+// ==========================================================
+app.get('/api/produtos/:id', async (req, res) => {
+    const productId = req.params.id; // Pega o ID do produto da URL
+
+    // Validação básica do ID
+    if (!productId || isNaN(productId)) {
+        return res.status(400).json({ message: 'ID do produto inválido.' });
+    }
+
+    let connection;
+    try {
+        console.log(`Recebida requisição para produto com ID: ${productId}`);
+        connection = await mysql.createConnection(dbConfig);
+
+        const [rows] = await connection.execute(
+            'SELECT * FROM produtos WHERE id = ?',
+            [productId]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'Produto não encontrado.' });
+        }
+
+        // Retorna o primeiro produto encontrado (deve ser único pelo ID)
+        res.status(200).json(rows[0]);
+
+    } catch (error) {
+        console.error(`Erro no servidor ao buscar produto com ID ${productId}:`, error);
+        res.status(500).json({ message: 'Erro interno no servidor ao buscar o produto.' });
+    } finally {
+        if (connection) {
+            await connection.end();
+        }
+    }
+});
+
+// 10. Iniciar o Servidor
 app.listen(apiPort, () => {
     console.log(`Servidor backend NaturalBlu rodando em http://localhost:${apiPort}`);
     console.log(`Endpoint de cadastro disponível em POST http://localhost:${apiPort}/api/register`);

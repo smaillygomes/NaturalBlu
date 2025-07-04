@@ -1,4 +1,4 @@
-// Arquivo: frontend/js/homepage.js (Versão Final com Carrinho Inteligente + Categorias Funcionais)
+// Arquivo: frontend/js/homepage.js (Versão Final com Carrinho Inteligente + Categorias Funcionais + Redirecionamento de Produto)
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3. CARREGAMENTO DE PRODUTOS ---
     async function carregarProdutos() {
         if (!productsGrid) return;
-        
+
         productsGrid.innerHTML = '<p>Carregando produtos...</p>';
         try {
-            const response = await fetch('/api/produtos');
+            const response = await fetch('http://localhost:3000/api/produtos'); // Assumindo que o servidor está em localhost:3000
             if (!response.ok) throw new Error('A resposta da rede falhou.');
-            
+
             const produtos = await response.json();
-            productsGrid.innerHTML = '';
+            productsGrid.innerHTML = ''; // Limpa a mensagem de carregamento
 
             if (produtos.length === 0) {
                 productsGrid.innerHTML = '<p>Nenhum produto encontrado.</p>';
@@ -35,23 +35,41 @@ document.addEventListener('DOMContentLoaded', () => {
             produtos.forEach(produto => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.dataset.productId = `prod_${produto.id}`;
+                // ATENÇÃO: Alterado para salvar apenas o ID numérico, sem o "prod_"
+                card.dataset.productId = produto.id; 
                 card.dataset.productName = produto.nome;
                 card.dataset.productPrice = produto.preco;
-                card.dataset.category = produto.categoria;
+                card.dataset.category = produto.categoria; // Usado para filtro de categoria
 
                 card.innerHTML = `
-                    <div class="product-image"><img src="${produto.imagem_url}" alt="${produto.nome}"></div>
+                    <div class="product-image"><img src="${produto.imagem_url || 'assets/images/default-product.png'}" alt="${produto.nome}"></div>
                     <div class="product-info">
                         <span class="product-category">${formatarCategorias(produto.categoria)}</span>
                         <h3 class="product-title">${produto.nome}</h3>
                         <p class="product-description">${produto.peso}</p>
                         <div class="product-price">
                             <div><span class="price">R$ ${parseFloat(produto.preco).toFixed(2).replace('.', ',')}</span></div>
-                            <div class="product-actions"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button></div>
+                            <div class="product-actions">
+                                <button class="add-to-cart-btn" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-price="${produto.preco}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
+
+                // NOVO: Adiciona um EventListener para o clique no card INTEIRO
+                card.addEventListener('click', (event) => {
+                    // Verifica se o clique NÃO veio do botão "Adicionar ao Carrinho"
+                    // (ou de qualquer outro elemento que você não queira que redirecione a página)
+                    if (!event.target.closest('.add-to-cart-btn')) {
+                        const productId = card.dataset.productId; // Pega o ID do produto
+                        if (productId) {
+                            window.location.href = `productpage.html?id=${productId}`; // Redireciona com o ID
+                        }
+                    }
+                });
+
                 productsGrid.appendChild(card);
             });
         } catch (error) {
@@ -60,16 +78,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 4. LÓGICA DE ADICIONAR AO CARRINHO (JÁ ESTAVA CORRETA) ---
+    // --- 4. LÓGICA DE ADICIONAR AO CARRINHO (AJUSTADA PARA USAR O NOVO BOTÃO) ---
     if (productsGrid) {
         productsGrid.addEventListener('click', (event) => {
             const button = event.target.closest('.add-to-cart-btn');
             if (button) {
-                const card = button.closest('.product-card');
+                // Pega os dados diretamente dos atributos 'data-' do botão (para evitar 'closest' no card completo)
                 const produtoParaAdicionar = {
-                    id: card.dataset.productId,
-                    nome: card.dataset.productName,
-                    preco: parseFloat(card.dataset.productPrice)
+                    id: button.dataset.productId,
+                    nome: button.dataset.productName,
+                    preco: parseFloat(button.dataset.productPrice)
                 };
                 // Chama a função GLOBAL que está no carrinho.js
                 // Esta função já atualiza o carrinho em tempo real.
@@ -78,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 5. LÓGICA DE FILTRO DE CATEGORIAS (O TRECHO QUE FALTAVA) ---
+    // --- 5. LÓGICA DE FILTRO DE CATEGORIAS ---
     function filterProducts(category) {
         document.querySelectorAll('.product-card').forEach(card => {
             // Mostra o card se a categoria for 'all' OU se a categoria do card incluir o filtro
@@ -108,5 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- PONTO DE PARTIDA ---
-    carregarProdutos();
+    carregarProdutos(); // Carrega os produtos quando a página for carregada
 });
+
+// A função 'adicionarItemAoCarrinho' é esperada do carrinho.js e deve ser global.
+// Pelo seu HTML, 'carrinho.js' está sendo carregado antes de 'homepage.js', o que é o correto.

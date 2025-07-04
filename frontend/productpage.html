@@ -1,391 +1,331 @@
 <!DOCTYPE html>
- <html lang="pt-BR">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Aveia em Flocos | NaturalBlu</title>
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="css/productpage.css">
-     <link rel="stylesheet" href="css/mixpage.css">   <link rel="stylesheet" href="css/footer.css">   <link rel="stylesheet" href="css/carrinho.css"> </head>
- <body style="background-color: #fff;">
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto | NaturalBlu</title> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/productpage.css">
+    <link rel="stylesheet" href="css/mixpage.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/carrinho.css">
+</head>
+<body style="background-color: #fff;">
 
-     <header>
-       <div class="top-bar">
-         <div class="container">
-           <div class="contact-info">
-             <span><i class="fas fa-phone"></i> Bem-vindo à sua loja de produtos naturais!</span>
-           </div>
-           <div class="auth-buttons">
-             <a href="cadastro.html"><i class="fas fa-user"></i>Login</a>
-             <a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastre-se</a>
-           </div>
-         </div>
-       </div>
-       <div class="main-header">
-         <div class="container">
-           <div class="header-content">
-             <div class="logo">
-               <img src="assets/images/logo.png" alt="Natureza Viva">
-               <h1>Natural<span>Blu</span></h1>
-             </div>
-             <div class="user-actions">
-               <a href="#" id="cart-icon" class="cart-link">
-                 <i class="fas fa-shopping-cart"></i>
-                 <span id="cart-count" class="cart-count-badge">0</span>
-               </a>
-               <a href="#account"><i class="fas fa-user-circle"></i></a>
-             </div>
-           </div>
-         </div>
-       </div>
-       <nav>
-         <div class="container">
-           <ul class="nav-menu">
-             <li><a href="index.html">Home</a></li>
-             <li><a href="mix.html">Produtos Personalizados</a></li>
-             <li><a href="#">Sobre Nós</a></li>
-             <li><a href="#">Contato</a></li>
-           </ul>
-         </div>
-       </nav>
-     </header>
+    <header>
+      <div class="top-bar">
+        <div class="container">
+          <div class="contact-info">
+            <span><i class="fas fa-phone"></i> Bem-vindo à sua loja de produtos naturais!</span>
+          </div>
+          <div class="auth-buttons">
+            <a href="cadastro.html"><i class="fas fa-user"></i>Login</a>
+            <a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastre-se</a>
+          </div>
+        </div>
+      </div>
+      <div class="main-header">
+        <div class="container">
+          <div class="header-content">
+            <div class="logo">
+              <img src="assets/images/logo.png" alt="Natureza Viva">
+              <h1>Natural<span>Blu</span></h1>
+            </div>
+            <div class="user-actions">
+              <a href="#" id="cart-icon" class="cart-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count" class="cart-count-badge">0</span>
+              </a>
+              <a href="#account"><i class="fas fa-user-circle"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mix.html">Produtos Personalizados</a></li>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-     <div id="cart-dropdown" class="cart-dropdown-container">
-         <h3>Meu Carrinho</h3>
-         <div id="cart-items-list">
-             <p class="cart-empty-message">Seu carrinho está vazio.</p>
-         </div>
-         <div class="cart-summary">
-             <div class="cart-total">
-                 <strong>Total:</strong>
-                 <span id="cart-total-price">R$ 0,00</span>
-             </div>
-             <a href="#" class="btn btn-checkout">Finalizar Compra</a>
-         </div>
-     </div>
+    <div id="cart-dropdown" class="cart-dropdown-container">
+        <h3>Meu Carrinho</h3>
+        <div id="cart-items-list">
+            <p class="cart-empty-message">Seu carrinho está vazio.</p>
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total-price">R$ 0,00</span>
+            </div>
+            <a href="#" class="btn btn-checkout">Finalizar Compra</a>
+        </div>
+    </div>
 
-     <section class="product-page">
-         <div class="container">
-             <div class="product-container">
-                 <div class="product-gallery">
-                     <div class="main-image">
-                         <img src="https://images.tcdn.com.br/img/img_prod/757549/aveia_em_flocos_normais_granel_100g_123_1_f77a1149f2edd22aceb8b6f9f884ff8a.jpg" alt="Granola Caseira Integral">
-                     </div>
-                     <div class="thumbnails">
-                         <div class="thumbnail">
-                             <img src="https://images.tcdn.com.br/img/img_prod/757549/aveia_em_flocos_normais_granel_100g_123_1_f77a1149f2edd22aceb8b6f9f884ff8a.jpg" alt="Granola Caseira Integral">
-                         </div>
-                         <div class="thumbnail">
-                             <img src="https://th.bing.com/th/id/OIP._vwujxAAsF4PkFXQoX4vrwHaHa?w=500&h=500&rs=1&pid=ImgDetMain&cb=idpwebpc2" alt="Granola - Vista de cima">
-                         </div>
-                         <div class="thumbnail">
-                             <img src="https://th.bing.com/th/id/OIP.e06duxFnvHMqgyaVUt5fhAHaHa?rs=1&pid=ImgDetMain&cb=idpwebpc2" alt="Granola - Embalagem">
-                         </div>
-                     </div>
-                 </div>
+    <section class="product-page">
+        <div class="container">
+            <div id="loading-message" style="text-align: center; padding: 50px 0;">
+                <h1>Carregando detalhes do produto...</h1>
+                <p>Por favor, aguarde.</p>
+            </div>
+            
+            <div class="product-container" style="display: none;">
+                <div class="product-gallery main-gallery">
+                    <div class="main-image">
+                        <img src="" alt="Imagem Principal do Produto">
+                    </div>
+                    <div class="thumbnails">
+                        </div>
+                </div>
 
-                 <div class="product-details">
-                     <span class="product-category">Aveia</span>
-                     <h1 class="product-title">Aveia em Flocos</h1>
-                     <div class="product-rating">
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star-half-alt"></i>
-                         <span>(12 avaliações)</span>
-                     </div>
+                <div class="product-details">
+                    <span class="product-category"></span>
+                    <h1 class="product-title"></h1>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(0 avaliações)</span>
+                    </div>
 
-                     <div class="product-price">R$ 9,90</div>
+                    <div class="product-price"></div>
 
-                     <div class="product-description">
-                         <p>Aveia em Flocos excelente para sua alimentação.</p>
-                     </div>
+                    <div class="product-description">
+                        <p></p>
+                    </div>
 
-                     <div class="product-features">
-                         <h3>Benefícios:</h3>
-                         <ul>
-                             <li>Fonte de fibras e proteínas</li>
-                             <li>Sem conservantes ou aditivos artificiais</li>
-                             <li>Excelente para dieta</li>
-                             <li>Alimento altamente nutritivo</li>
-                             <li>Opção em Flocos e Farinha de aveia</li>
-                         </ul>
-                     </div>
+                    <div class="product-features">
+                        <h3>Benefícios:</h3>
+                        <ul>
+                            </ul>
+                    </div>
 
-                     <div class="quantity-selector">
-                         <label for="quantity">Quantidade em gramas:</label>
-                         <button class="qty-minus">-</button>
-                         <input type="number" id="quantity" value="500" min="500" step="100">
-                         <button class="qty-plus">+</button>
-                     </div>
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantidade em gramas:</label>
+                        <button class="qty-minus">-</button>
+                        <input type="number" id="quantity" value="500" min="500" step="100">
+                        <button class="qty-plus">+</button>
+                    </div>
 
-                     <div class="product-actions">
-                         <button class="btn"><i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho</button>
-                         <button class="btn"><i class="fas fa-credit-card"></i> Comprar</button>
-                     </div>
+                    <div class="product-actions">
+                        <button class="btn add-to-cart-page-btn"><i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho</button>
+                        <button class="btn"><i class="fas fa-credit-card"></i> Comprar</button>
+                    </div>
 
-                     <div class="product-meta">
-                         <p><strong>Código do produto:</strong> GRN-2021</p>
-                         <p><strong>Categoria:</strong> Cereais > Aveia</p>
-                         <p><strong>Tags:</strong> natural, saudável, integral, Aveia</p>
-                     </div>
-                 </div>
-             </div>
+                    <div class="product-meta">
+                        <p><strong>Código do produto:</strong> <span id="meta-product-id"></span></p>
+                        <p><strong>Categoria:</strong> <span id="meta-product-category"></span></p>
+                        <p><strong>Tags:</strong> <span id="meta-product-tags"></span></p>
+                    </div>
+                </div>
+            </div>
 
-             <div class="product-tabs">
-                 <div class="tabs-header">
-                     <button class="tab-btn active" data-tab="description">Descrição</button>
-                     <button class="tab-btn" data-tab="ingredients">Ingredientes</button>
-                     <button class="tab-btn" data-tab="reviews">Avaliações</button>
-                     <button class="tab-btn" data-tab="shipping">Entrega</button>
-                 </div>
+            <div class="product-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="description">Descrição</button>
+                    <button class="tab-btn" data-tab="ingredients">Ingredientes</button>
+                    <button class="tab-btn" data-tab="reviews">Avaliações</button>
+                    <button class="tab-btn" data-tab="shipping">Entrega</button>
+                </div>
 
-                 <div class="tab-content active" id="description">
-                     <h3>Sobre a Granola Caseira Integral</h3>
-                     <p>Nossa Aveia em Flocos é um alimento natural, versátil e altamente nutritivo, ideal para quem busca saúde e bem-estar no dia a dia. Produzida com grãos selecionados, ela passa por um processo mínimo de beneficiamento para preservar ao máximo seus nutrientes.</p>
-                     <p>Rica em fibras solúveis e insolúveis, a aveia ajuda no bom funcionamento do intestino, contribui para a redução do colesterol e proporciona maior saciedade, sendo uma excelente aliada em dietas equilibradas. Além disso, é uma ótima fonte de energia de liberação lenta, ideal para começar o dia com disposição ou manter o pique ao longo da jornada.</p>
-                 </div>
+                <div class="tab-content active" id="description">
+                    <h3>Sobre o Produto</h3>
+                    <p id="dynamic-description-content"></p>
+                </div>
 
-                 <div class="tab-content" id="ingredients">
-                     <h3>Ingredientes</h3>
-                     <p>Aveia em flocos integrais, castanha-do-pará, amêndoas, nozes, uvas passas, mel puro, óleo de coco extra virgem, sementes de girassol, canela em pó e sal marinho.</p>
-                     <p><strong>Alérgenos:</strong> Contém aveia em flocos e castanhas, podendo conter traços de outros frutos secos.</p>
-                     <p><strong>Opção vegana:</strong> Substituímos o mel por xarope de agave orgânico na versão de aveia em flocos.</p>
-                 </div>
+                <div class="tab-content" id="ingredients">
+                    <h3>Ingredientes</h3>
+                    <p id="dynamic-ingredients-content">Informações de ingredientes não disponíveis para este produto.</p>
+                </div>
 
-                 <div class="tab-content" id="reviews">
-                     <h3>Avaliações dos Clientes</h3>
-                     <div class="review">
-                         <div class="review-header">
-                             <span class="review-author">Maria S.</span>
-                             <span class="review-rating">
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star"></i>
-                             </span>
-                         </div>
-                         <div class="review-content">
-                             <p>Adorei a idéia de montar seu próprio Mix. Muito Bom!</p>
-                         </div>
-                     </div>
+                <div class="tab-content" id="reviews">
+                    <h3>Avaliações dos Clientes</h3>
+                    <p>Avaliações não carregadas dinamicamente. (Conteúdo estático, pode ser alterado no futuro).</p>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="review-author">Maria S.</span>
+                            <span class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </div>
+                        <div class="review-content">
+                            <p>Adorei a idéia de montar seu próprio Mix. Muito Bom!</p>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="review-author">Carlos R.</span>
+                            <span class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                        </div>
+                        <div class="review-content">
+                            <p>Muito boa, mas gostaria que tivesse mais frutas secas. A qualidade dos ingredientes é excelente.</p>
+                        </div>
+                    </div>
+                    <form class="review-form">
+                        <h4>Deixe sua avaliação</h4>
+                        <div class="form-group">
+                            <label>Seu nome:</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Sua avaliação:</label>
+                            <textarea rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Classificação:</label>
+                            <div class="rating-stars">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Enviar Avaliação</button>
+                    </form>
+                </div>
 
-                     <div class="review">
-                         <div class="review-header">
-                             <span class="review-author">Carlos R.</span>
-                             <span class="review-rating">
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star"></i>
-                                 <i class="fas fa-star-half-alt"></i>
-                             </span>
-                         </div>
-                         <div class="review-content">
-                             <p>Muito boa, mas gostaria que tivesse mais frutas secas. A qualidade dos ingredientes é excelente.</p>
-                         </div>
-                     </div>
+                <div class="tab-content" id="shipping">
+                    <h3>Opções de Entrega</h3>
+                    <p>Entregamos para todo o Brasil através dos seguintes correios:</p>
+                    <ul>
+                        <li><strong>Sedex:</strong> 2-3 dias úteis - R$ 15,90</li>
+                        <li><strong>PAC:</strong> 5-10 dias úteis - R$ 9,90</li>
+                        <li><strong>Retirada no local:</strong> Grátis - Disponível em nossa loja física em Blumenau/SC</li>
+                    </ul>
+                    <p>Para compras acima de R$ 150,00, o frete é grátis para todo o Brasil (via PAC).</p>
+                </div>
+            </div>
 
-                     <form class="review-form">
-                         <h4>Deixe sua avaliação</h4>
-                         <div class="form-group">
-                             <label>Seu nome:</label>
-                             <input type="text" required>
-                         </div>
-                         <div class="form-group">
-                             <label>Sua avaliação:</label>
-                             <textarea rows="4" required></textarea>
-                         </div>
-                         <div class="form-group">
-                             <label>Classificação:</label>
-                             <div class="rating-stars">
-                                 <i class="far fa-star" data-rating="1"></i>
-                                 <i class="far fa-star" data-rating="2"></i>
-                                 <i class="far fa-star" data-rating="3"></i>
-                                 <i class="far fa-star" data-rating="4"></i>
-                                 <i class="far fa-star" data-rating="5"></i>
-                             </div>
-                         </div>
-                         <button type="submit" class="btn">Enviar Avaliação</button>
-                     </form>
-                 </div>
+            <div class="related-products">
+                <div class="section-title">
+                    <h2>Produtos Relacionados</h2>
+                </div>
 
-                 <div class="tab-content" id="shipping">
-                     <h3>Opções de Entrega</h3>
-                     <p>Entregamos para todo o Brasil através dos seguintes correios:</p>
-                     <ul>
-                         <li><strong>Sedex:</strong> 2-3 dias úteis - R$ 15,90</li>
-                         <li><strong>PAC:</strong> 5-10 dias úteis - R$ 9,90</li>
-                         <li><strong>Retirada no local:</strong> Grátis - Disponível em nossa loja física em Blumenau/SC</li>
-                     </ul>
-                     <p>Para compras acima de R$ 150,00, o frete é grátis para todo o Brasil (via PAC).</p>
-                 </div>
-             </div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://th.bing.com/th/id/OIP.9Pp8b-XiJIXOKflte21wggHaHa?rs=1&pid=ImgDetMain" alt="Mel Orgânico">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Mel</span>
+                            <h3 class="product-title">Mel Orgânico 100% Puro</h3>
+                            <p class="product-description">Mel natural colhido de forma sustentável, sem adição de açúcares ou conservantes.</p>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">R$ 35,90</span>
+                                    <span class="price">R$ 29,90</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button><i class="fas fa-heart"></i></button>
+                                    <button><i class="fas fa-shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-             <div class="related-products">
-                 <div class="section-title">
-                     <h2>Produtos Relacionados</h2>
-                 </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://th.bing.com/th/id/OIP.ZJPnRxbnxQlYEX2R2PpvhgHaE8?rs=1&pid=ImgDetMain" alt="Farinha de Amêndoas">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Farinhas</span>
+                            <h3 class="product-title">Farinha de Amêndoas</h3>
+                            <p class="product-description">Farinha de amêndoas 100% natural, sem glúten e sem aditivos.</p>
+                            <div class="product-price">
+                                <div>
+                                    <span class="price">R$ 32,90</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button><i class="fas fa-heart"></i></button>
+                                    <button><i class="fas fa-shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                 <div class="products-grid">
-                     <div class="product-card">
-                         <div class="product-image">
-                             <img src="https://th.bing.com/th/id/OIP.9Pp8b-XiJIXOKflte21wggHaHa?rs=1&pid=ImgDetMain" alt="Mel Orgânico">
-                         </div>
-                         <div class="product-info">
-                             <span class="product-category">Mel</span>
-                             <h3 class="product-title">Mel Orgânico 100% Puro</h3>
-                             <p class="product-description">Mel natural colhido de forma sustentável, sem adição de açúcares ou conservantes.</p>
-                             <div class="product-price">
-                                 <div>
-                                     <span class="old-price">R$ 35,90</span>
-                                     <span class="price">R$ 29,90</span>
-                                 </div>
-                                 <div class="product-actions">
-                                     <button><i class="fas fa-heart"></i></button>
-                                     <button><i class="fas fa-shopping-cart"></i></button>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzDGwpnCYM9geDoDPtgfvyT3NH7j2UafafPA&s" alt="Mix de Castanhas">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Mix</span>
+                            <h3 class="product-title">Mix de Castanhas Premium</h3>
+                            <p class="product-description">Seleção de castanhas, nozes e frutas secas sem conservantes.</p>
+                            <div class="product-price">
+                                <div>
+                                    <span class="price">R$ 38,90</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button><i class="fas fa-heart"></i></button>
+                                    <button><i class="fas fa-shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                     <div class="product-card">
-                         <div class="product-image">
-                             <img src="https://th.bing.com/th/id/OIP.ZJPnRxbnxQlYEX2R2PpvhgHaE8?rs=1&pid=ImgDetMain" alt="Farinha de Amêndoas">
-                         </div>
-                         <div class="product-info">
-                             <span class="product-category">Farinhas</span>
-                             <h3 class="product-title">Farinha de Amêndoas</h3>
-                             <p class="product-description">Farinha de amêndoas 100% natural, sem glúten e sem aditivos.</p>
-                             <div class="product-price">
-                                 <div>
-                                     <span class="price">R$ 32,90</span>
-                                 </div>
-                                 <div class="product-actions">
-                                     <button><i class="fas fa-heart"></i></button>
-                                     <button><i class="fas fa-shopping-cart"></i></button>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://www.receiteria.com.br/wp-content/uploads/receitas-de-sucos-detox.png" alt="Suco Detox">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Bebidas</span>
+                            <h3 class="product-title">Kit Suco Detox (3 Unidades)</h3>
+                            <p class="product-description">Sucos naturais sem conservantes, combinações de frutas e vegetais.</p>
+                            <div class="product-price">
+                                <div>
+                                    <span class="old-price">R$ 45,00</span>
+                                    <span class="price">R$ 36,90</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button><i class="fas fa-heart"></i></button>
+                                    <button><i class="fas fa-shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                     <div class="product-card">
-                         <div class="product-image">
-                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzDGwpnCYM9geDoDPtgfvyT3NH7j2UafafPA&s" alt="Mix de Castanhas">
-                         </div>
-                         <div class="product-info">
-                             <span class="product-category">Mix</span>
-                             <h3 class="product-title">Mix de Castanhas Premium</h3>
-                             <p class="product-description">Seleção de castanhas, nozes e frutas secas sem conservantes.</p>
-                             <div class="product-price">
-                                 <div>
-                                     <span class="price">R$ 38,90</span>
-                                 </div>
-                                 <div class="product-actions">
-                                     <button><i class="fas fa-heart"></i></button>
-                                     <button><i class="fas fa-shopping-cart"></i></button>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
+    <section class="newsletter" style="margin-bottom: 0;">
+        <div class="container">
+            <h2>Assine Nossa Newsletter</h2>
+            <p>Receba novidades, promoções exclusivas e dicas de vida saudável diretamente no seu e-mail.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu melhor e-mail">
+                <button type="submit">Assinar</button>
+            </form>
+        </div>
+    </section>
 
-                     <div class="product-card">
-                         <div class="product-image">
-                             <img src="https://www.receiteria.com.br/wp-content/uploads/receitas-de-sucos-detox.png" alt="Suco Detox">
-                         </div>
-                         <div class="product-info">
-                             <span class="product-category">Bebidas</span>
-                             <h3 class="product-title">Kit Suco Detox (3 Unidades)</h3>
-                             <p class="product-description">Sucos naturais sem conservantes, combinações de frutas e vegetais.</p>
-                             <div class="product-price">
-                                 <div>
-                                     <span class="old-price">R$ 45,00</span>
-                                     <span class="price">R$ 36,90</span>
-                                 </div>
-                                 <div class="product-actions">
-                                     <button><i class="fas fa-heart"></i></button>
-                                     <button><i class="fas fa-shopping-cart"></i></button>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </section>
+    <footer>
+        <div class="container"><div class="footer-content"><div class="footer-column"><h3>NaturalBlu</h3><p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><div class="footer-column"><h3>Institucional</h3><ul><li><a href="#">Sobre Nós</a></li><li><a href="#">Nossos Valores</a></li><li><a href="#">Blog</a></li></ul></div><div class="footer-column"><h3>Ajuda</h3><ul><li><a href="#">Perguntas Frequentes</a></li><li><a href="#">Entregas</a></li><li><a href="#">Fale Conosco</a></li></ul></div><div class="footer-column"><h3>Minha Conta</h3><ul><li><a href="#">Minha Conta</a></li><li><a href="#">Meus Pedidos</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2025 NaturalBlu - Todos os direitos reservados.</p></div></div>
+    </footer>
 
-     <section class="newsletter">
-         <div class="container">
-             <h2>Assine Nossa Newsletter</h2>
-             <p>Receba novidades, promoções exclusivas e dicas de vida saudável diretamente no seu e-mail.</p>
-             <form class="newsletter-form">
-                 <input type="email" placeholder="Seu melhor e-mail">
-                 <button type="submit">Assinar</button>
-             </form>
-         </div>
-     </section>
+    <a class="botao-wpp" href="https://wa.me/5547984692576" target="_blank">
+        <img src="assets/images/whatsapp_icon.png" alt="" width="60px">
+    </a>
 
-     <footer>
-         <div class="container"><div class="footer-content"><div class="footer-column"><h3>NaturalBlu</h3><p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><div class="footer-column"><h3>Institucional</h3><ul><li><a href="#">Sobre Nós</a></li><li><a href="#">Nossos Valores</a></li><li><a href="#">Blog</a></li></ul></div><div class="footer-column"><h3>Ajuda</h3><ul><li><a href="#">Perguntas Frequentes</a></li><li><a href="#">Entregas</a></li><li><a href="#">Fale Conosco</a></li></ul></div><div class="footer-column"><h3>Minha Conta</h3><ul><li><a href="#">Minha Conta</a></li><li><a href="#">Meus Pedidos</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2025 NaturalBlu - Todos os direitos reservados.</p></div></div>
-     </footer>
-
-     <a class="botao-wpp" href="https://wa.me/5547984692576" target="_blank">
-         <img src="download.png" alt="" width="60px">
-     </a>
-
-     <script>
-         // Script para as abas
-         document.querySelectorAll('.tab-btn').forEach(btn => {
-             btn.addEventListener('click', () => {
-                 // Remove active class from all buttons and contents
-                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-                 // Add active class to clicked button and corresponding content
-                 btn.classList.add('active');
-                 const tabId = btn.getAttribute('data-tab');
-                 document.getElementById(tabId).classList.add('active');
-             });
-         });
-
-         // Script para o seletor de quantidade
-         document.querySelector('.qty-minus').addEventListener('click', () => {
-             const input = document.getElementById('quantity');
-             if (input.value > 500) input.value = parseInt(input.value) - 100;
-         });
-
-         document.querySelector('.qty-plus').addEventListener('click', () => {
-             const input = document.getElementById('quantity');
-             input.value = parseInt(input.value) + 100;
-         });
-
-         // Script para as estrelas de avaliação
-         document.querySelectorAll('.rating-stars i').forEach(star => {
-             star.addEventListener('click', () => {
-                 const rating = parseInt(star.getAttribute('data-rating'));
-                 const stars = document.querySelectorAll('.rating-stars i');
-
-                 stars.forEach((s, index) => {
-                     if (index < rating) {
-                         s.classList.remove('far');
-                         s.classList.add('fas');
-                     } else {
-                         s.classList.remove('fas');
-                         s.classList.add('far');
-                     }
-                 });
-             });
-         });
-
-         // Script para as miniaturas da galeria
-         document.querySelectorAll('.thumbnail').forEach(thumb => {
-             thumb.addEventListener('click', () => {
-                 const imgSrc = thumb.querySelector('img').src;
-                 document.querySelector('.main-image img').src = imgSrc;
-             });
-         });
-     </script>
-     <script src="js/carrinho.js"></script> <script src="js/mixpage.js"></script>   </body>
- </html>
+    <script src="js/carrinho.js"></script>
+    <script src="js/mixpage.js"></script>
+    <script src="js/productpage.js"></script> 
+</body>
+</html>

@@ -69,12 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Verifica se o elemento clicado é o botão de remover
             if (event.target.classList.contains('remove-item-btn')) {
                 
-                // AQUI ESTÁ A MÁGICA: Impede que o evento de clique "borbulhe"
+                // Impede que o evento de clique "borbulhe"
                 // para o resto da página e feche o painel indevidamente.
                 event.stopPropagation();
 
-                const itemId = event.target.closest('.cart-item').dataset.itemId;
+                // CORREÇÃO AQUI: Garante que o itemId seja um número para comparação consistente
+                const itemId = parseInt(event.target.closest('.cart-item').dataset.itemId);
+                
                 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+                // O filtro agora compara números com números
                 carrinho = carrinho.filter(item => item.id !== itemId);
                 localStorage.setItem('carrinho', JSON.stringify(carrinho));
                 renderizarCarrinho();
