@@ -50,8 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="product-price">
                             <div><span class="price">R$ ${parseFloat(produto.preco).toFixed(2).replace('.', ',')}</span></div>
                             <div class="product-actions">
-                                <button class="add-to-cart-btn" data-product-id="${produto.id}" data-product-name="${produto.nome}" data-product-price="${produto.preco}">
-                                    <i class="fas fa-shopping-cart"></i>
+                                <button class="add-to-cart-btn"
+                                        data-product-id="${produto.id}"
+                                        data-product-name="${produto.nome}"
+                                        data-product-price="${produto.preco}"
+                                        data-product-image-url="${produto.imagem_url || 'assets/images/default-product.png'}"  data-product-category="${produto.categoria || ''}"> <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -83,14 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
         productsGrid.addEventListener('click', (event) => {
             const button = event.target.closest('.add-to-cart-btn');
             if (button) {
-                // Pega os dados diretamente dos atributos 'data-' do botão (para evitar 'closest' no card completo)
                 const produtoParaAdicionar = {
                     id: button.dataset.productId,
                     nome: button.dataset.productName,
-                    preco: parseFloat(button.dataset.productPrice)
+                    preco: parseFloat(button.dataset.productPrice),
+                    imagem_url: button.dataset.productImageUrl, // ADICIONE ESTA LINHA
+                    categoria: button.dataset.productCategory   // ADICIONE ESTA LINHA (se quiser a categoria)
                 };
-                // Chama a função GLOBAL que está no carrinho.js
-                // Esta função já atualiza o carrinho em tempo real.
                 adicionarItemAoCarrinho(produtoParaAdicionar);
             }
         });

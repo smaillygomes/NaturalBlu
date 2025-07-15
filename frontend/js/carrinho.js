@@ -1,20 +1,19 @@
-// Arquivo: frontend/js/carrinho.js (Versão Definitiva - Correção Final de ID e Limpeza)
+// Arquivo: frontend/js/carrinho.js (Versão Final com Suporte a Imagem, Categoria e Quantidade)
 
 /**
  * Função global para adicionar um item ao carrinho. Esta é a ÚNICA função que deve ser usada para isso.
- * @param {object} produto - O objeto do produto. Ex: {id, nome, preco}
+ * @param {object} produto - O objeto do produto. Ex: {id, nome, preco, imagem_url, categoria, [quantity]}
  */
 function adicionarItemAoCarrinho(produto) {
     if (!produto || produto.id === undefined || !produto.nome || produto.preco === undefined) {
         console.error("Tentativa de adicionar produto inválido:", produto);
         return;
     }
-    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     
-    // CORREÇÃO AQUI (já estava, mas crucial):
-    // 1. Converte o ID do produto para string para usar replace (caso já seja número)
-    // 2. Remove prefixos como 'mix_' ou 'prod_' que podem vir do HTML ou de logs antigos
-    // 3. Converte para número, garantindo que o ID salvo é sempre um inteiro puro.
+    // Converte o ID do produto para string para usar replace (caso já seja número)
+    // Remove prefixos como 'mix_' ou 'prod_' que podem vir do HTML ou de logs antigos
+    // Converte para número, garantindo que o ID salvo é sempre um inteiro puro.
     const cleanId = parseInt(String(produto.id).replace('mix_', '').replace('prod_', ''));
 
     // Verifica se o ID limpo é um número válido. Se não for, loga um erro e não adiciona.
@@ -23,38 +22,48 @@ function adicionarItemAoCarrinho(produto) {
         return;
     }
 
-    carrinho.push({
-        id: cleanId, // <<<--- ID limpo e numérico salvo aqui
-        nome: produto.nome,
-        preco: parseFloat(produto.preco) // Garante que o preço também é um número
-    });
+    // Procura se o item já existe no carrinho para atualizar a quantidade
+    const itemExistente = carrinho.find(item => item.id === cleanId);
+
+    if (itemExistente) {
+        itemExistente.quantity = (itemExistente.quantity || 1) + 1; // Incrementa a quantidade
+    } else {
+        // Se o item não existe, adiciona ele com todas as propriedades
+        carrinho.push({
+            id: cleanId,
+            nome: produto.nome,
+            preco: parseFloat(produto.preco), // Garante que o preço também é um número
+            // Inclui imagem_url e categoria, com fallbacks caso não venham
+            imagem_url: produto.imagem_url || 'assets/images/default-product.png', 
+            categoria: produto.categoria || 'Sem Categoria', 
+            quantity: 1 // Adiciona a propriedade quantity para novos itens
+        });
+    }
     
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     
-    renderizarCarrinho(); // Atualiza a interface imediatamente.
+    renderizarCarrinho(); // Atualiza a interface do dropdown imediatamente.
+    // O alerta pode ser removido depois de testar se preferir uma UX mais suave
     alert(`"${produto.nome}" foi adicionado ao carrinho!`);
 }
 
 /**
- * Lê os dados do localStorage e atualiza a interface do carrinho.
+ * Lê os dados do localStorage e atualiza a interface do carrinho (dropdown).
  */
 function renderizarCarrinho() {
-    // CORREÇÃO CRÍTICA AQUI (para o erro "[object Object] is not valid JSON"):
-    // Adiciona um bloco try-catch ao JSON.parse para lidar com dados corrompidos.
     let carrinho;
     try {
         const storedCart = localStorage.getItem('carrinho');
         carrinho = storedCart ? JSON.parse(storedCart) : [];
-        // Se, por algum motivo, o carrinho parseado não for um array, reinicia.
         if (!Array.isArray(carrinho)) {
             console.warn("Conteúdo do carrinho no localStorage não é um array. Reiniciando carrinho.");
             carrinho = [];
-            localStorage.removeItem('carrinho'); // Limpa o localStorage para evitar futuros erros
+            localStorage.removeItem('carrinho');
         }
     } catch (e) {
         console.error("Erro ao fazer parse do carrinho do localStorage. Limpando carrinho.", e);
-        carrinho = []; // Se houver erro de parse, inicia um carrinho vazio
-        localStorage.removeItem('carrinho'); // Limpa o localStorage para evitar futuros erros
+        carrinho = [];
+        localStorage.removeItem('carrinho');
     }
 
     const cartItemsList = document.getElementById('cart-items-list');
@@ -62,34 +71,38 @@ function renderizarCarrinho() {
     const cartTotalPrice = document.getElementById('cart-total-price');
 
     if (!cartItemsList || !cartCount || !cartTotalPrice) {
+        // Se os elementos não existirem (ex: em cartpage.html), não tenta renderizar o dropdown
         return;
     }
 
     cartItemsList.innerHTML = '';
-    cartCount.textContent = carrinho.length;
+    
+    let totalItemsInCart = 0;
+    let precoTotalCalculado = 0;
 
     if (carrinho.length === 0) {
         cartItemsList.innerHTML = '<p class="cart-empty-message">Seu carrinho está vazio.</p>';
-        cartTotalPrice.textContent = 'R$ 0,00';
     } else {
-        let precoTotalCalculado = 0;
         carrinho.forEach(item => {
             const itemElement = document.createElement('div');
             itemElement.classList.add('cart-item');
-            // item.id já será número (pela correção em adicionarItemAoCarrinho)
+            // Usamos item.id para o dataset, que já está limpo e numérico
             itemElement.dataset.itemId = item.id; 
             itemElement.innerHTML = `
                 <div class="cart-item-info">
-                    <span class="item-name">${item.nome}</span>
-                    <span class="item-price">R$ ${parseFloat(item.preco).toFixed(2).replace('.', ',')}</span>
+                    <span class="item-name">${item.nome} (${item.quantity || 1})</span> 
+                    <span class="item-price">R$ ${(parseFloat(item.preco) * (item.quantity || 1)).toFixed(2).replace('.', ',')}</span>
                 </div>
                 <button class="remove-item-btn" title="Remover item">&times;</button>
             `;
             cartItemsList.appendChild(itemElement);
-            precoTotalCalculado += parseFloat(item.preco);
+            precoTotalCalculado += parseFloat(item.preco) * (item.quantity || 1);
+            totalItemsInCart += (item.quantity || 1);
         });
-        cartTotalPrice.textContent = `R$ ${precoTotalCalculado.toFixed(2).replace('.', ',')}`;
     }
+    
+    cartCount.textContent = totalItemsInCart;
+    cartTotalPrice.textContent = `R$ ${precoTotalCalculado.toFixed(2).replace('.', ',')}`;
 }
 
 // Ouve o evento de que a página HTML foi totalmente carregada.
@@ -103,24 +116,35 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItemsList.addEventListener('click', (event) => {
             const removeButton = event.target.closest('.remove-item-btn');
 
-            if (removeButton) { // Se um botão de remoção foi clicado
-                event.stopPropagation(); // Impede o fechamento do carrinho
+            if (removeButton) {
+                event.stopPropagation();
                 
-                // CORREÇÃO AQUI: Limpa o ID do dataset ANTES de converter para número
-                // Isso garante que mesmo IDs antigos com prefixo (salvos antes da correção) sejam removíveis.
-                const rawItemId = removeButton.closest('.cart-item').dataset.itemId;
-                const itemId = parseInt(String(rawItemId).replace('mix_', '').replace('prod_', '')); // <<< APLICA A LIMPEZA AQUI TAMBÉM
+                const rawItemId = removeButton.closest('.cart-item')?.dataset.itemId;
+                // Garante que o ID limpo seja numérico para comparação
+                const itemIdToRemove = parseInt(String(rawItemId).replace('mix_', '').replace('prod_', ''));
                 
-                if (isNaN(itemId)) { // Verifica se o ID é um número válido após a limpeza
-                    console.error("ID do item para remover é inválido (NaN) após limpeza:", rawItemId); // Loga o ID original
+                if (isNaN(itemIdToRemove)) {
+                    console.error("ID do item para remover é inválido (NaN) após limpeza:", rawItemId);
                     return;
                 }
 
                 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-                // Filtra por ID numérico limpo
-                carrinho = carrinho.filter(item => item.id !== itemId);
+                // Filtra por ID numérico limpo e remove APENAS UMA OCORRÊNCIA para múltiplos do mesmo item
+                const indexToRemove = carrinho.findIndex(item => item.id === itemIdToRemove);
+                if (indexToRemove > -1) {
+                    if ((carrinho[indexToRemove].quantity || 1) > 1) {
+                        carrinho[indexToRemove].quantity--; // Decrementa a quantidade
+                    } else {
+                        carrinho.splice(indexToRemove, 1); // Remove o item se a quantidade for 1 ou menos
+                    }
+                }
+
                 localStorage.setItem('carrinho', JSON.stringify(carrinho));
                 renderizarCarrinho();
+                // Chamada opcional para atualizar o carrinho na página de carrinho, se visível
+                if (typeof renderCartItems === 'function') { // Verifica se renderCartItems existe no escopo global (cartpage.js)
+                    renderCartItems();
+                }
             }
         });
     }
