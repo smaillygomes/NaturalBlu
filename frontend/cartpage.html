@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras | NaturalBlu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mixpage.css">   <link rel="stylesheet" href="css/carrinho.css">  <link rel="stylesheet" href="css/footer.css">   <link rel="stylesheet" href="css/cartpage.css"> </head>
+<body>
+    <header>
+      <div class="top-bar">
+        <div class="container">
+          <div class="contact-info">
+            <span><i class="fas fa-phone"></i> Bem-vindo à sua loja de produtos naturais!</span>
+          </div>
+          <div class="auth-buttons">
+            <a href="cadastro.html"><i class="fas fa-user"></i>Login</a> <a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastre-se</a> </div>
+        </div>
+      </div>
+      <div class="main-header">
+        <div class="container">
+          <div class="header-content">
+            <div class="logo">
+              <img src="assets/images/logo.png" alt="NaturalBlu"> <h1>Natural<span>Blu</span></h1>
+            </div>
+            <div class="user-actions">
+              <a href="#" id="cart-icon" class="cart-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count" class="cart-count-badge">0</span>
+              </a>
+              <a href="#account"><i class="fas fa-user-circle"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li> <li><a href="mix.html">Produtos Personalizados</a></li> <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div id="cart-dropdown" class="cart-dropdown-container">
+        <h3>Meu Carrinho</h3>
+        <div id="cart-items-list">
+            <p class="cart-empty-message">Seu carrinho está vazio.</p>
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total-price">R$ 0,00</span>
+            </div>
+            <a href="#" class="btn btn-checkout">Finalizar Compra</a>
+        </div>
+    </div>
+    
+    <section class="cart-page">
+        <div class="container">
+            <div class="cart-header">
+                <h1 class="cart-title">Meu Carrinho</h1>
+                <div class="cart-steps">
+                    <div class="cart-step active">
+                        <div class="cart-step-number">1</div>
+                        <span>Carrinho</span>
+                    </div>
+                    <div class="cart-step-separator"><i class="fas fa-chevron-right"></i></div>
+                    <div class="cart-step">
+                        <div class="cart-step-number">2</div>
+                        <span>Pagamento</span>
+                    </div>
+                    <div class="cart-step-separator"><i class="fas fa-chevron-right"></i></div>
+                    <div class="cart-step">
+                        <div class="cart-step-number">3</div>
+                        <span>Confirmação</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items-container">
+                    <p class="empty-cart-message">Seu carrinho está vazio. Adicione produtos!</p>
+                    </div>
+                
+                <div class="cart-summary">
+                    <h2 class="cart-summary-title">Resumo do Pedido</h2>
+                    
+                    <div class="summary-row">
+                        <span class="summary-label">Subtotal (<span id="summary-item-count">0</span> itens)</span>
+                        <span class="summary-value" id="summary-subtotal">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span class="summary-label">Frete</span>
+                        <span class="summary-value" id="summary-shipping">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span class="summary-label">Desconto</span>
+                        <span class="summary-value" id="summary-discount" style="color: #4a8f29;">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="coupon-form">
+                        <input type="text" id="coupon-input" placeholder="Cupom de desconto">
+                        <button id="apply-coupon-btn">Aplicar</button>
+                    </div>
+                    
+                    <div class="summary-total">
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value" id="summary-total">R$ 0,00</span>
+                    </div>
+                    
+                    <button class="btn btn-outline" id="continue-shopping-btn">Continuar Comprando</button>
+                    <button class="btn" id="finish-purchase-btn">Finalizar Compra</button>
+                    
+                    <div class="payment-methods">
+                        <h3 class="payment-title">Métodos de Pagamento</h3>
+                        
+                        <div class="payment-option selected" data-payment-method="credit-card">
+                            <div class="payment-icon">
+                                <i class="fab fa-cc-visa"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">Cartão de Crédito</div>
+                                <div class="payment-description">Pague em até 12x sem juros</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment-method="boleto">
+                            <div class="payment-icon">
+                                <i class="fas fa-barcode"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">Boleto Bancário</div>
+                                <div class="payment-description">5% de desconto à vista</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment-method="pix">
+                            <div class="payment-icon">
+                                <i class="fab fa-pix"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">PIX</div>
+                                <div class="payment-description">7% de desconto à vista</div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option" data-payment-method="deposit">
+                            <div class="payment-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-name">Depósito Bancário</div>
+                                <div class="payment-description">5% de desconto à vista</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="newsletter">
+    <div class="container">
+        <h2>Assine Nossa Newsletter</h2>
+        <p>Receba novidades, promoções exclusivas e dicas de vida saudável diretamente no seu e-mail.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Seu melhor e-mail">
+            <button type="submit">Assinar</button>
+        </form>
+    </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NaturalBlu</h3>
+                    <p>Promovendo saúde e bem-estar através de produtos naturais e sustentáveis.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Institucional</h3>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Nossos Valores</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ajuda</h3>
+                    <ul>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                        <li><a href="#">Entregas</a></li>
+                        <li><a href="#">Fale Conosco</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Minha Conta</h3>
+                    <ul>
+                        <li><a href="#">Minha Conta</a></li>
+                        <li><a href="#">Meus Pedidos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NaturalBlu - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a class="botao-wpp" href="https://wa.me/5547984692576" target="_blank"> 
+        <img src="assets/images/whatsapp_icon.png" alt="WhatsApp" width="60px"> </a>
+
+    <script src="js/carrinho.js"></script>
+    <script src="js/mixpage.js"></script> <script src="js/cartpage.js"></script> </body>
+</html>

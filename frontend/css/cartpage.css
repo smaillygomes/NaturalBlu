@@ -1,0 +1,364 @@
+/* Estilos específicos da Página do Carrinho */
+.cart-page {
+    padding: 40px 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-title {
+    font-size: 28px;
+    color: #2c5a1a;
+    font-weight: 700;
+}
+
+.cart-steps {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #777;
+}
+
+.cart-step {
+    display: flex;
+    align-items: center;
+}
+
+.cart-step.active {
+    color: #4a8f29;
+    font-weight: 600;
+}
+
+.cart-step-number {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #eee;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+.cart-step.active .cart-step-number {
+    background-color: #4a8f29;
+    color: white;
+}
+
+.cart-step-separator {
+    margin: 0 10px;
+    color: #ddd;
+}
+
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.cart-items {
+    flex: 2;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    padding: 20px;
+}
+
+.cart-summary {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    padding: 20px;
+    height: fit-content;
+}
+
+.cart-item {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 150px;
+    height: 150px;
+    margin-right: 30px;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.cart-item-category {
+    font-size: 16px;
+    color: #4a8f29;
+    margin-bottom: 10px;
+}
+
+.cart-item-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c5a1a;
+    margin-bottom: 15px;
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.quantity-selector button {
+    background: #f0f7ed;
+    border: 1px solid #ddd;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.quantity-selector input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+}
+
+.remove-item {
+    color: #e74c3c;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.remove-item i {
+    margin-right: 5px;
+}
+
+.cart-summary-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c5a1a;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-label {
+    color: #555;
+}
+
+.summary-value {
+    font-weight: 600;
+}
+
+.summary-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c5a1a;
+    margin: 20px 0;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.coupon-form {
+    display: flex;
+    margin: 20px 0;
+}
+
+.coupon-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.coupon-form button {
+    padding: 10px 15px;
+    background-color: #4a8f29;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.btn { /* Este .btn já deve vir do homepage.css ou mixpage.css */
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #4a8f29;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #a8d5a8;
+}
+
+.btn-outline { /* Este .btn-outline já deve vir do homepage.css ou mixpage.css */
+    background-color: #fff;
+    border: 2px solid #4a8f29;
+    color: #4a8f29;
+    margin-bottom: 15px;
+}
+
+.btn-outline:hover {
+    background-color: #eaf5ea;
+}
+
+.payment-methods {
+    margin-top: 30px;
+}
+
+.payment-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c5a1a;
+    margin-bottom: 15px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.payment-option:hover {
+    border-color: #4a8f29;
+}
+
+.payment-option.selected {
+    border-color: #4a8f29;
+    background-color: #f0f7ed;
+}
+
+.payment-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #4a8f29;
+}
+
+.payment-details {
+    flex: 1;
+}
+
+.payment-name {
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.payment-description {
+    font-size: 12px;
+    color: #777;
+}
+
+.empty-cart-message { /* Nova classe para a mensagem de carrinho vazio */
+    text-align: center;
+    padding: 50px 0;
+    color: #777;
+    font-size: 1.2rem;
+}
+
+.empty-cart-message i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+/* Responsividade (do seu código original) */
+@media (max-width: 768px) {
+    .cart-container {
+        flex-direction: column;
+    }
+    
+    .cart-steps {
+        display: none;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+    }
+    
+    .cart-item-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+}
+
+.botao-wpp{
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    width: 60px ;
+    padding: 0; /* remove qualquer preenchimento */
+    margin: 0; /* remove margens */
+    border: none; /* remove bordas */
+    display: block; /* remove espaços extras causados por comportamento inline */
+}
