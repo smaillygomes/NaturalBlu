@@ -123,10 +123,17 @@ async function loadProductDetails() {
         const addToCartBtn = document.querySelector('.product-actions .add-to-cart-page-btn'); 
         if (addToCartBtn) {
             addToCartBtn.onclick = () => {
+                // Passa o objeto 'product' completo para adicionarItemAoCarrinho
+                // Isso garante que todas as propriedades necessárias sejam salvas.
                 adicionarItemAoCarrinho({
                     id: product.id,
                     nome: product.nome,
-                    preco: parseFloat(product.preco)
+                    preco: parseFloat(product.preco),
+                    imagem_url: product.imagem_url, // ADICIONE ESTA LINHA
+                    categoria: product.categoria,   // ADICIONE ESTA LINHA
+                    // Opcional: Adicione outras propriedades que possam ser úteis para exibir no carrinho
+                    peso: product.peso || '',
+                    descricao: product.descricao || ''
                 });
             };
         }

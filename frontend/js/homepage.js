@@ -46,15 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="product-info">
                         <span class="product-category">${formatarCategorias(produto.categoria)}</span>
                         <h3 class="product-title">${produto.nome}</h3>
-                        <p class="product-description">${produto.peso}</p>
-                        <div class="product-price">
+                        <p class="product-description">${produto.peso || ''}</p> <div class="product-price">
                             <div><span class="price">R$ ${parseFloat(produto.preco).toFixed(2).replace('.', ',')}</span></div>
                             <div class="product-actions">
                                 <button class="add-to-cart-btn"
                                         data-product-id="${produto.id}"
                                         data-product-name="${produto.nome}"
-                                        data-product-price="${produto.preco}"
-                                        data-product-image-url="${produto.imagem_url || 'assets/images/default-product.png'}"  data-product-category="${produto.categoria || ''}"> <i class="fas fa-shopping-cart"></i>
+                                        data-product-price="${parseFloat(produto.preco)}" data-product-image-url="${produto.imagem_url || 'assets/images/default-product.png'}"
+                                        data-product-category="${produto.categoria || ''}"
+                                        data-product-description="${produto.descricao || ''}" data-product-peso="${produto.peso || ''}"> <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
