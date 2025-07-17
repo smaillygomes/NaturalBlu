@@ -89,45 +89,94 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para remover item do carrinho
     function removeItemFromCart(productId) {
         let cartItems = getCartItems();
-        cartItems = cartItems.filter(item => item.id !== productId);
+        
+        const idToRemove = parseInt(productId); 
+
+        // Filtra os itens, mantendo apenas aqueles cujo ID é diferente do ID a ser removido
+        // Se houver mais de um item igual, remove apenas um por vez
+        const indexToRemove = cartItems.findIndex(item => item.id === idToRemove);
+        if (indexToRemove > -1) {
+            if ((cartItems[indexToRemove].quantity || 1) > 1) {
+                cartItems[indexToRemove].quantity--; // Decrementa a quantidade
+            } else {
+                cartItems.splice(indexToRemove, 1); // Remove o item se a quantidade for 1 ou menos
+            }
+        }
+        
         saveCartItems(cartItems);
-        renderCartItems(); // Renderiza novamente para atualizar a lista
-        // Se houver uma função global de atualização do ícone do carrinho, chame-a aqui
-        if (typeof updateCartDisplay === 'function') { // Verifica se a função existe
-            updateCartDisplay();
+        renderCartItems(); // Renderiza novamente a página do carrinho
+
+        // NOVIDADE: Chama a função global para atualizar o dropdown do carrinho
+        if (typeof renderizarCarrinho === 'function') { // Verifica se a função existe
+            renderizarCarrinho(); 
         }
     }
 
     // Função para atualizar a quantidade de um item no carrinho
     function updateItemQuantity(productId, change) {
         let cartItems = getCartItems();
-        const itemIndex = cartItems.findIndex(item => item.id === productId);
+        
+        const idToUpdate = parseInt(productId);
+        
+        const itemIndex = cartItems.findIndex(item => item.id === idToUpdate);
 
         if (itemIndex > -1) {
-            let newQuantity = cartItems[itemIndex].quantity + change;
+            let newQuantity = (cartItems[itemIndex].quantity || 1) + change;
+            if (newQuantity < 1) newQuantity = 1; // Quantidade mínima é 1
+
+            cartItems[itemIndex].quantity = newQuantity;
+            saveCartItems(cartItems);
+            renderCartItems(); // Renderiza novamente a página do carrinho
+
+            // NOVIDADE: Chama a função global para atualizar o dropdown do carrinho
+            if (typeof renderizarCarrinho === 'function') { // Verifica se a função existe
+                renderizarCarrinho();
+            }
+        }
+    }
+
+    // Função para atualizar a quantidade de um item no carrinho
+    function updateItemQuantity(productId, change) {
+        let cartItems = getCartItems();
+        
+        // Garante que o ID do produto é um número para a busca
+        const idToUpdate = parseInt(productId);
+        
+        const itemIndex = cartItems.findIndex(item => item.id === idToUpdate);
+
+        if (itemIndex > -1) {
+            let newQuantity = (cartItems[itemIndex].quantity || 1) + change; // Adicionado (item.quantity || 1)
             if (newQuantity < 1) newQuantity = 1; // Quantidade mínima é 1
 
             cartItems[itemIndex].quantity = newQuantity;
             saveCartItems(cartItems);
             renderCartItems(); // Renderiza novamente para atualizar
-            if (typeof updateCartDisplay === 'function') { // Verifica se a função existe
-                updateCartDisplay();
-            }
         }
     }
 
     // Event Listeners para botões de remoção e quantidade
     cartItemsContainer.addEventListener('click', (event) => {
         const target = event.target;
-        const productId = target.dataset.id || target.closest('button')?.dataset.id;
+        // Adicione este console.log para ver o elemento clicado
+        console.log('Elemento clicado:', target); 
 
-        if (!productId) return; // Não é um botão de ação do item
+        const productId = target.dataset.id || target.closest('button')?.dataset.id;
+        // Adicione este console.log para ver o productId capturado
+        console.log('ProductId capturado:', productId);
+
+        if (!productId) {
+            console.log('Nenhum productId encontrado para a ação.'); // Adicione log
+            return; // Não é um botão de ação do item
+        }
 
         if (target.classList.contains('remove-item') || target.closest('.remove-item')) {
+            console.log('Botão Remover clicado para o produto:', productId); // Adicione log
             removeItemFromCart(productId);
         } else if (target.classList.contains('quantity-decrease')) {
+            console.log('Botão Decrementar clicado para o produto:', productId); // Adicione log
             updateItemQuantity(productId, -1);
         } else if (target.classList.contains('quantity-increase')) {
+            console.log('Botão Aumentar clicado para o produto:', productId); // Adicione log
             updateItemQuantity(productId, 1);
         }
     });
