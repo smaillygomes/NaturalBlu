@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listener para o botão "Continuar Comprando"
     const continueShoppingBtn = document.getElementById('continue-shopping-btn');
-    if (continueShoppingBtn) {
+    if (continueShoppingBtn) {   
         continueShoppingBtn.addEventListener('click', () => {
             window.location.href = 'index.html'; // Redireciona para a página inicial
         });
